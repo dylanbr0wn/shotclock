@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.react-time-picker {
+  display: inline-flex;
+  position: relative;
+
+  &,
+  & *,
+  & *:before,
+  & *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  &--disabled {
+    background-color: rgb(240, 240, 240);
+    color: rgb(109, 109, 109);
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    border: thin solid gray;
+  }
+  &__inputGroup {
+    // own padding + inputs padding + digits width + dots width
+    flex-grow: 1;
+    // padding: 0 2px;
+    box-sizing: content-box;
+
+    &__divider {
+      // padding: 1px 0;
+      white-space: pre;
+    }
+
+    &__input {
+      @apply bg-transparent w-20 p-2;
+
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &:invalid {
+        background: fade(red, 10%);
+      }
+
+     
+    }
+}
+}

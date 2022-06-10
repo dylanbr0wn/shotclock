@@ -4,11 +4,15 @@ import * as React from "react";
 import Time from "../Time";
 import { useSpring, a, config } from "@react-spring/web";
 
-const Progress = () => {
-    const progressRef = React.useRef<HTMLDivElement>(null);
-    const { time, start, stop, reset, percent, goal, running } =
-        useStopWatch(progressRef);
+interface IProgressProps {
+    running: boolean;
+    percent: number;
+    start: () => void;
+    stop: () => void;
+    reset: () => void;
+}
 
+const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
     const props = useSpring({
         scaleY: running ? 1 : 0.3,
         config: config.molasses,
@@ -75,9 +79,6 @@ const Progress = () => {
                     <a.div style={{ height }} className="flex bg-amber-800" />
                 </div>
             </div>
-            <span className=" absolute transform -translate-x-[50%] -translate-y-[50%] top-[50%] left-[50%] inline-block text-center">
-                <Time time={time} percent={percent} goal={goal} />
-            </span>
         </>
     );
 };
