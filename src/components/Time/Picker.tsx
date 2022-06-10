@@ -44,7 +44,7 @@ const Picker = ({
         setSeconds((prevState: number) => prevState + 1);
     };
     const decreaseSeconds = () => {
-        if (!open || seconds < 1) return;
+        if (!open || seconds < 2) return;
         setSeconds((prevState: number) => prevState - 1);
     };
 
@@ -103,8 +103,9 @@ const Picker = ({
                         e.target.blur();
                     }
                 }}
-                className={`flex justify-center cursor-pointer hover:text-amber-600 hover:focus-within:text-amber-100 align-middle content-center rounded-md transition-colors border-0 ${
-                    open && "bg-stone-900/30 text-amber-100"
+                className={`flex justify-center cursor-pointer hover:text-amber-600  align-middle content-center rounded-md transition-colors border-0 ${
+                    open &&
+                    "bg-stone-900/30 text-amber-100 hover:text-amber-100 "
                 }`}
             >
                 <div className="relative">
@@ -169,6 +170,14 @@ const Picker = ({
                         <MinusCircleIcon className="h-7 w-7 m-auto text-amber-100" />
                     </button>
                 </div>
+                <div
+                    onClick={() => {
+                        setOpen(true);
+                        secondRef.current?.focus();
+                    }}
+                >
+                    :
+                </div>
                 <div className="relative">
                     <button
                         {...longPressSecondUp}
@@ -198,7 +207,7 @@ const Picker = ({
                         //         e.target.blur();
                         //     }
                         // }}
-                        min={0}
+                        min={1}
                         max={59}
                         step={1}
                         className={`w-8 mx-auto font-mono text-center p-0 transition-all font-bold text-lg outline-none  relative  focus:ring-0 bg-transparent border-none ring-0  ${
@@ -206,6 +215,7 @@ const Picker = ({
                         }`}
                         value={("0" + seconds).slice(-2)}
                         onChange={({ target }) => {
+                            if (parseInt(target.value) < 1) return;
                             setSeconds(parseInt(target.value) % 60);
                             if (parseInt(target.value) > 59) {
                                 setMinutes(
@@ -227,7 +237,7 @@ const Picker = ({
                         // onClick={decreaseSeconds}
                         className={`${
                             open
-                                ? seconds === 0
+                                ? seconds < 2
                                     ? "opacity-50 cursor-not-allowed"
                                     : "opacity-100"
                                 : "opacity-0 pointer-events-none"
