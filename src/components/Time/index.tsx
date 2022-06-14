@@ -1,18 +1,24 @@
 import { config, useSpring, a } from "@react-spring/web";
 import * as React from "react";
+import Controls, { IControlsProps } from "../Controls";
 import Picker from "./Picker";
+
+interface ITimeProps extends IControlsProps {
+    time: number;
+    percent: number;
+    setGoal: (goal: number) => void;
+    running: boolean;
+}
 
 const Time = ({
     time,
     percent,
     setGoal,
     running,
-}: {
-    time: number;
-    percent: number;
-    setGoal: (goal: number) => void;
-    running: boolean;
-}) => {
+    start,
+    stop,
+    reset,
+}: ITimeProps) => {
     const [open, setOpen] = React.useState(false);
 
     const [seconds, setSeconds] = React.useState(23);
@@ -47,9 +53,7 @@ const Time = ({
             <span className="absolute transform -translate-x-[50%] -translate-y-[50%] top-[50%] left-[50%] inline-block text-center">
                 <div
                     className={`text-5xl ${
-                        !running || percent < 45
-                            ? "text-stone-800"
-                            : "text-amber-200"
+                        percent < 50 ? "text-stone-800" : "text-amber-200"
                     } font-mono font-semibold transition-colors  duration-1000`}
                 >
                     {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
@@ -57,7 +61,9 @@ const Time = ({
                 </div>
                 <a.div
                     style={{ opacity, scale }}
-                    className="text-lg flex flex-col text-stone-800 focus-within:text-amber-100 transition-colors inset-x-0 px-24 h-32 transform -translate-y-14"
+                    className={`text-lg ${
+                        percent > 0 && "pointer-events-none"
+                    } flex flex-col text-stone-800 focus-within:text-amber-100 transition-colors inset-x-0 px-24 h-32 transform -translate-y-14`}
                     onMouseLeave={() => setOpen(false)}
                 >
                     <div className="my-auto ">
@@ -75,6 +81,7 @@ const Time = ({
                         </div>
                     </div>
                 </a.div>
+                <Controls start={start} stop={stop} reset={reset} />
             </span>
         </>
     );

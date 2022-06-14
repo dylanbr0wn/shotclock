@@ -6,6 +6,7 @@ import { useStopWatch } from "./hooks";
 import Progress from "./components/Progress";
 import Menu from "./components/Menu";
 import Time from "./components/Time";
+import Controls from "./components/Controls";
 
 function App() {
     const [count, setCount] = React.useState(0);
@@ -21,12 +22,9 @@ function App() {
     });
 
     return (
-        <div
-            id="outer-container"
-            className="h-screen w-screen bg-amber-100 overflow-hidden"
-        >
+        <div className="h-screen w-screen bg-amber-100 overflow-hidden">
             <Menu />
-            <div id="page-wrap" className="pt-24 h-full w-full">
+            <div className="pt-24 h-full w-full relative">
                 <Progress
                     start={start}
                     stop={stop}
@@ -34,7 +32,15 @@ function App() {
                     running={running}
                     percent={percent}
                 />
-                <Time time={time} percent={percent} setGoal={setGoal} />
+                <Time
+                    start={start}
+                    stop={stop}
+                    reset={reset}
+                    running={running}
+                    time={time}
+                    percent={percent}
+                    setGoal={setGoal}
+                />
             </div>
         </div>
     );

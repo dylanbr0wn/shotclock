@@ -22,7 +22,8 @@ export const useStopWatch = () => {
     React.useEffect(() => {
         let percent = 0;
         if(time <= goal ){
-            percent = time / goal * 100;
+            
+            percent = Math.floor(time / goal * 100);
         }if(time > goal){
             percent = 100;
         }

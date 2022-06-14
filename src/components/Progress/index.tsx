@@ -19,28 +19,25 @@ const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
     });
 
     const [{ height }, api] = useSpring(() => ({
-        height: "0%",
+        height: "0vh",
         config: config.molasses,
     }));
 
     React.useEffect(() => {
         api({
-            height: `${percent}%`,
+            height: `${(percent / 100) * 80}%`,
         });
     }, [percent]);
 
     return (
         <>
-            <button onClick={() => start()}>Start</button>
-            <button onClick={() => stop()}>Stop</button>
-            <button onClick={() => reset()}>Reset</button>
-            <div className="absolute top-0 pointer-events-none h-screen overflow-hidden">
-                <div className="flex flex-col h-full">
+            <div className="absolute top-0 pointer-events-none  overflow-hidden">
+                <div className="flex flex-col h-screen">
                     <a.svg
                         style={{
                             ...props,
                         }}
-                        className={`${styles.waves} mt-auto`}
+                        className={`${styles.waves} mt-auto flex-shrink-0 h-[20vh]`}
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
                         viewBox="0 24 150 28"
@@ -76,7 +73,10 @@ const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
                             />
                         </g>
                     </a.svg>
-                    <a.div style={{ height }} className="flex bg-amber-800" />
+                    <a.div
+                        style={{ height }}
+                        className="flex bg-amber-800 h-[80vh] origin-bottom flex-shrink"
+                    />
                 </div>
             </div>
         </>
