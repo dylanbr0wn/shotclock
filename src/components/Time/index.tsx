@@ -28,8 +28,9 @@ const Time = ({
         []
     );
 
-    const { opacity } = useSpring({
+    const { opacity, translateY } = useSpring({
         opacity: time > 0 ? 0 : 1,
+        translateY: "-2rem",
         config: config.molasses,
     });
 
@@ -59,11 +60,13 @@ const Time = ({
                     {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
                     {("0" + ((time / 10) % 100)).slice(-2)}
                 </div>
+                <Controls start={start} stop={stop} reset={reset} />
+
                 <a.div
-                    style={{ opacity, scale }}
+                    style={{ opacity, scale, translateY }}
                     className={`text-lg ${
-                        percent > 0 && "pointer-events-none"
-                    } flex flex-col text-stone-800 focus-within:text-amber-100 transition-colors inset-x-0 px-24 h-32 transform -translate-y-14`}
+                        (percent > 0 || !open) && "pointer-events-none"
+                    } flex flex-col text-stone-800 focus-within:text-amber-100 transition-colors px-24 h-32`}
                     onMouseLeave={() => setOpen(false)}
                 >
                     <div className="my-auto ">
@@ -81,7 +84,6 @@ const Time = ({
                         </div>
                     </div>
                 </a.div>
-                <Controls start={start} stop={stop} reset={reset} />
             </span>
         </>
     );

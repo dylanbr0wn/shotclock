@@ -103,7 +103,7 @@ const Picker = ({
                         e.target.blur();
                     }
                 }}
-                className={`flex justify-center cursor-pointer hover:text-amber-600  align-middle content-center rounded-md transition-colors border-0 ${
+                className={`flex justify-center cursor-pointer pointer-events-auto hover:text-amber-600  align-middle content-center rounded-md transition-colors border-0 ${
                     open &&
                     "bg-stone-900/30 text-amber-100 hover:text-amber-100 "
                 }`}

@@ -44,8 +44,8 @@ const Controls = ({ start, stop, reset }: IControlsProps) => {
         scale: resetHover ? 1.05 : 1,
     });
     return (
-        <a.div className="flex space-x-2 px-10">
-            <div className="w-full flex justify-around relative">
+        <a.div className="flex space-x-2 px-10 h-24">
+            <div className="w-full flex justify-around relative h-16 my-auto">
                 {startTransition(
                     (style, item) =>
                         item && (
@@ -53,7 +53,7 @@ const Controls = ({ start, stop, reset }: IControlsProps) => {
                                 style={{ ...style, ...startSpring }}
                                 onMouseEnter={() => setStartHover(true)}
                                 onMouseLeave={() => setStartHover(false)}
-                                className="rounded-full absolute hover:text-stone-900/80 active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none "
+                                className="rounded-full origin-center absolute hover:text-stone-900/80 active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none "
                                 onClick={() => {
                                     start();
                                     setButtons(["stop", "reset"]);
