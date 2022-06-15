@@ -9,8 +9,7 @@ import Time from "./components/Time";
 import Controls from "./components/Controls";
 
 function App() {
-    const [count, setCount] = React.useState(0);
-    const { time, start, stop, reset, percent, goal, running, setGoal } =
+    const { time, start, stop, reset, percent, running, setGoal } =
         useStopWatch();
 
     // hook will read value from localStorage.getItem('color-scheme')
@@ -36,7 +35,6 @@ function App() {
                     start={start}
                     stop={stop}
                     reset={reset}
-                    running={running}
                     time={time}
                     percent={percent}
                     setGoal={setGoal}

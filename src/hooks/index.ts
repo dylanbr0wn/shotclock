@@ -4,44 +4,39 @@ export const useStopWatch = () => {
     const [time, setTime] = React.useState(0);
     const [running, setRunning] = React.useState(false);
     const [goal, setGoal] = React.useState(1000);
+    const timer = React.useRef(0);
+    const [timerStart, setTimerStart] = React.useState(0);
 
     const [percent, setPercent] = React.useState(0);
-
-    React.useEffect(() => {
-        let interval: number | undefined;
-        if (running) {
-            interval = setInterval(() => {
-                setTime((prevTime) => prevTime +10);
-            }, 10);
-        } else if (!running) {
-            clearInterval(interval);
-        }
-        return () => clearInterval(interval);
-    }, [running]);
-
-    React.useEffect(() => {
-        let percent = 0;
-        if(time <= goal ){
-            
-            percent = Math.floor(time / goal * 100);
-        }if(time > goal){
-            percent = 100;
-        }
-        setPercent(percent);
-      
-    },[time,goal])
 
     const reset = () => {
         setRunning(false);
         setTime(0);
+        clearInterval(timer.current);
     };
 
     const start = () => {
+        const timerStart = Date.now() - time
         setRunning(true);
+        setTimerStart(timerStart);
+        timer.current = setInterval(() => {
+                let percent = 0;
+                const time = Date.now() - timerStart
+                if(time <= goal ){
+                    
+                    percent = Math.floor(time / goal * 100);
+                }if(time > goal){
+                    percent = 100;
+                }
+                setPercent(percent);
+                setTime(Date.now() - timerStart);
+            }, 10)
+        
     };
 
     const stop = () => {
         setRunning(false);
+        clearInterval(timer.current);
     };
 
     return { time, reset, start, stop, percent,goal,running, setGoal };

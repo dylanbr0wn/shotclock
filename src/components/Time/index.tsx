@@ -7,26 +7,13 @@ interface ITimeProps extends IControlsProps {
     time: number;
     percent: number;
     setGoal: (goal: number) => void;
-    running: boolean;
 }
 
-const Time = ({
-    time,
-    percent,
-    setGoal,
-    running,
-    start,
-    stop,
-    reset,
-}: ITimeProps) => {
+const Time = ({ time, percent, setGoal, start, stop, reset }: ITimeProps) => {
     const [open, setOpen] = React.useState(false);
 
     const [seconds, setSeconds] = React.useState(23);
     const [minutes, setMinutes] = React.useState(0);
-    const secondOptions = React.useMemo(
-        () => new Array(60).fill(undefined).map((_, i) => i),
-        []
-    );
 
     const { opacity, translateY } = useSpring({
         opacity: time > 0 ? 0 : 1,
@@ -58,7 +45,7 @@ const Time = ({
                     } font-mono font-semibold transition-colors  duration-1000`}
                 >
                     {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
-                    {("0" + ((time / 10) % 100)).slice(-2)}
+                    {("0" + (Math.floor(time / 10) % 100)).slice(-2)}
                 </div>
                 <Controls start={start} stop={stop} reset={reset} />
 
