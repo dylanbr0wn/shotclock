@@ -12,6 +12,7 @@ export const useStopWatch = () => {
     const reset = () => {
         setRunning(false);
         setTime(0);
+        setPercent(0);
         clearInterval(timer.current);
     };
 
