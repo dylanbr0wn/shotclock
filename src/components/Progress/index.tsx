@@ -15,6 +15,7 @@ interface IProgressProps {
 const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
     const props = useSpring({
         scaleY: running ? 1 : 0.3,
+        translateY: 1, // use this to fix the small line between waves and bar on mobile
         config: config.molasses,
     });
 
