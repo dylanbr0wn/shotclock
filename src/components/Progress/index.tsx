@@ -34,11 +34,15 @@ const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
         <>
             <div className="absolute top-0 pointer-events-none  overflow-hidden">
                 <div className="flex flex-col h-screen">
-                    <a.svg
-                        style={{
-                            ...props,
-                        }}
-                        className={`${styles.waves} mt-auto flex-shrink-0 h-[20vh]`}
+                    <svg
+                        // style={{
+                        //     ...props,
+                        // }}
+                        className={`${
+                            styles.waves
+                        } mt-auto flex-shrink-0 h-[1vh] md:h-[10vh] duration-1000 transform translate-y-1 ${
+                            running ? "scale-y-125" : "scale-y-50"
+                        } transition-all  `}
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
                         viewBox="0 24 150 28"
@@ -73,7 +77,7 @@ const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
                                 y="7"
                             />
                         </g>
-                    </a.svg>
+                    </svg>
                     <a.div
                         style={{ height }}
                         className="flex bg-amber-800 h-[80vh] origin-bottom flex-shrink"

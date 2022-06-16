@@ -22,7 +22,7 @@ const Controls = ({ start, stop, reset }: IControlsProps) => {
     });
     const resetTransition = useTransition(buttons.includes("reset"), {
         from: { opacity: 0, x: 0 },
-        enter: { opacity: 1, x: 50 },
+        enter: { opacity: 1, x: 90 },
         leave: { opacity: 0, x: 0 },
         config: config.stiff,
     });
@@ -43,58 +43,102 @@ const Controls = ({ start, stop, reset }: IControlsProps) => {
     const resetSpring = useSpring({
         scale: resetHover ? 1.05 : 1,
     });
+
     return (
-        <a.div className="flex space-x-2 px-10 h-24">
-            <div className="w-full flex justify-around relative h-16 my-auto">
+        <div className="flex space-x-2 px-10 mt-4 mb-6 h-32">
+            <div className="w-full flex justify-around relative h-24 my-auto">
                 {startTransition(
                     (style, item) =>
                         item && (
-                            <a.button
+                            <a.div
                                 style={{ ...style, ...startSpring }}
-                                onMouseEnter={() => setStartHover(true)}
-                                onMouseLeave={() => setStartHover(false)}
-                                className="rounded-full origin-center absolute hover:text-stone-900/80 active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none "
-                                onClick={() => {
-                                    start();
-                                    setButtons(["stop", "reset"]);
-                                }}
+                                className="absolute w-24 h-24 origin-center"
                             >
-                                <PlayIcon className="h-16 w-16 mx-auto" />
-                            </a.button>
+                                <button
+                                    onMouseEnter={() => setStartHover(true)}
+                                    onMouseLeave={() => setStartHover(false)}
+                                    className="rounded-full inset-0 origin-center absolute hover:text-stone-900/80 active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none "
+                                    onClick={() => {
+                                        start();
+                                        setButtons(["stop", "reset"]);
+                                    }}
+                                >
+                                    <PlayIcon className="h-24 w-24 mx-auto" />
+                                </button>
+                                <div
+                                    // style={{ ...style, ...resetSpring }}
+                                    className={`absolute text-sm pointer-events-none bottom-0 delay-200 duration-300 transform transition-all ${
+                                        item && startHover
+                                            ? "opacity-50 translate-y-3"
+                                            : "opacity-0"
+                                    } w-24`}
+                                >
+                                    Start Brewing
+                                </div>
+                            </a.div>
                         )
                 )}
                 {stopTransition(
                     (style, item) =>
                         item && (
-                            <a.button
+                            <a.div
                                 style={{ ...style, ...stopSpring }}
-                                onMouseEnter={() => setStopHover(true)}
-                                onMouseLeave={() => setStopHover(false)}
-                                className="rounded-full absolute hover:text-stone-900/80 active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none "
-                                onClick={() => {
-                                    stop();
-                                    setButtons(["start", "reset"]);
-                                }}
+                                className="absolute w-24 h-24 origin-center"
                             >
-                                <PauseIcon className="h-16 w-16 mx-auto" />
-                            </a.button>
+                                <button
+                                    onMouseEnter={() => setStopHover(true)}
+                                    onMouseLeave={() => setStopHover(false)}
+                                    className="rounded-full inset-0 absolute hover:text-stone-900/80 active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none"
+                                    onClick={() => {
+                                        stop();
+                                        setButtons(["start", "reset"]);
+                                    }}
+                                >
+                                    <PauseIcon className="h-24 w-24 mx-auto" />
+                                </button>
+                                <div
+                                    // style={{ ...style, ...resetSpring }}
+                                    className={`absolute pointer-events-none bottom-0 delay-200 duration-300 transform transition-all ${
+                                        item && stopHover
+                                            ? "opacity-50 translate-y-5"
+                                            : "opacity-0"
+                                    } w-24`}
+                                >
+                                    Stop
+                                </div>
+                            </a.div>
                         )
                 )}
                 {resetTransition(
                     (style, item) =>
                         item && (
-                            <a.button
+                            <a.div
                                 style={{ ...style, ...resetSpring }}
-                                onMouseEnter={() => setResetHover(true)}
-                                onMouseLeave={() => setResetHover(false)}
-                                className="rounded-full absolute hover:text-stone-900/80 top-2 ml-3 active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none "
-                                onClick={() => {
-                                    reset();
-                                    setButtons(["start"]);
-                                }}
+                                className="absolute my-2 w-20 h-20 origin-center"
                             >
-                                <XCircleIcon className="h-12 w-12 mx-auto" />
-                            </a.button>
+                                <button
+                                    // style={{ ...style, ...resetSpring }}
+                                    onMouseEnter={() => setResetHover(true)}
+                                    onMouseLeave={() => setResetHover(false)}
+                                    className="rounded-full inset-0 absolute hover:text-stone-900/80  active:text-stone-900 transition-colors text-stone-900/50 focus:outline-none "
+                                    onClick={() => {
+                                        reset();
+                                        setButtons(["start"]);
+                                    }}
+                                >
+                                    <XCircleIcon className="h-20 w-20 mx-auto" />
+                                </button>
+                                <div
+                                    // style={{ ...style, ...resetSpring }}
+                                    className={`absolute pointer-events-none bottom-0 delay-200 duration-300 transform transition-all ${
+                                        item && resetHover
+                                            ? "opacity-50 translate-y-5"
+                                            : "opacity-0"
+                                    } w-20`}
+                                >
+                                    Reset
+                                </div>
+                            </a.div>
                         )
                 )}
             </div>
@@ -102,7 +146,7 @@ const Controls = ({ start, stop, reset }: IControlsProps) => {
                 
             </div>
             <div className="w-full px-2"></div> */}
-        </a.div>
+        </div>
     );
 };
 export default Controls;

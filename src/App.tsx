@@ -21,7 +21,7 @@ function App() {
     });
 
     return (
-        <div className="h-screen w-screen bg-amber-100 overflow-hidden">
+        <div className="h-screen w-screen bg-amber-50 overflow-hidden selection:bg-amber-500 selection:text-amber-200">
             <Menu />
             <div className="pt-24 h-full w-full relative">
                 <Progress
@@ -37,6 +37,7 @@ function App() {
                     reset={reset}
                     time={time}
                     percent={percent}
+                    running={running}
                     setGoal={setGoal}
                 />
             </div>

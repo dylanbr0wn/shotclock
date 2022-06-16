@@ -1,4 +1,10 @@
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/outline";
+import {
+    ChevronDownIcon,
+    ChevronUpIcon,
+    MinusCircleIcon,
+    PlusCircleIcon,
+    PlusIcon,
+} from "@heroicons/react/outline";
 import * as React from "react";
 import useLongPress from "../../hooks";
 
@@ -9,6 +15,7 @@ interface IPickerProps {
     setMinutes: (minutes: number | ((val: number) => number)) => void;
     setOpen: (open: boolean) => void;
     open: boolean;
+    isVisible: boolean;
 }
 
 const Picker = ({
@@ -18,6 +25,7 @@ const Picker = ({
     setMinutes,
     setOpen,
     open,
+    isVisible,
 }: IPickerProps) => {
     const minuteRef = React.useRef<HTMLInputElement>(null);
     const secondRef = React.useRef<HTMLInputElement>(null);
@@ -96,19 +104,18 @@ const Picker = ({
     return (
         <>
             <div
-                onBlur={(e) => {
-                    e.preventDefault();
-                    if (!buttonHover) {
-                        setOpen(false);
-                        e.target.blur();
-                    }
-                }}
-                className={`flex justify-center cursor-pointer pointer-events-auto hover:text-amber-600  align-middle content-center rounded-md transition-colors border-0 ${
-                    open &&
-                    "bg-stone-900/30 text-amber-100 hover:text-amber-100 "
-                }`}
+                // onBlur={(e) => {
+                //     e.preventDefault();
+                //     if (!buttonHover) {
+                //         setOpen(false);
+                //         e.target.blur();
+                //     }
+                // }}
+                className={`flex justify-center bg-white ${
+                    isVisible && "pointer-events-auto"
+                } transition-colors mx-auto shadow-md py-3 px-4 align-middle content-center  rounded-lg border-0 `}
             >
-                <div className="relative">
+                <div className="relative z-50">
                     <button
                         {...longPressMinuteUp}
                         onMouseEnter={() => {
@@ -118,20 +125,14 @@ const Picker = ({
                             setButtonHover(false);
                             longPressMinuteUp.onMouseLeave(e);
                         }}
+                        disabled={minutes > 58}
                         // onClick={increaseMinute}
-                        className={`${
-                            open
-                                ? minutes === 59
-                                    ? "opacity-50 cursor-not-allowed"
-                                    : "opacity-100"
-                                : "opacity-0 pointer-events-none"
-                        } rounded-full p-0.5 absolute -translate-y-9 inset-x-0 transition-opacity`}
+                        className={`rounded-lg opacity-100 py-1 px-3 absolute transform -translate-y-[3.25rem]  inset-x-0 transition-opacity mx-auto bg-white shadow-md disabled:opacity-50`}
                     >
-                        <PlusCircleIcon className="h-7 w-7 m-auto text-amber-100" />
+                        <ChevronUpIcon className="h-6 w-6 m-auto text-stone-900" />
                     </button>
                     <input
                         ref={minuteRef}
-                        onFocus={() => setOpen(true)}
                         // onBlur={(e) => {
                         //     e.preventDefault();
                         //     if (!buttonHover) {
@@ -142,7 +143,8 @@ const Picker = ({
                         min={0}
                         max={59}
                         step={1}
-                        className={`w-8 mx-auto cursor font-mono text-center p-0 transition-all font-bold text-lg outline-none  relative  focus:ring-0 bg-transparent border-none ring-0 ${
+                        title="minutes"
+                        className={`w-12 mx-auto cursor-auto font-mono text-center p-0 transition-all font-bold text-4xl outline-none  relative  focus:ring-0 bg-transparent border-none ring-0 ${
                             !open ? "cursor-pointer" : "pointer-events-auto"
                         }`}
                         value={("0" + minutes).slice(-2)}
@@ -158,19 +160,15 @@ const Picker = ({
                             setButtonHover(false);
                             longPressMinuteDown.onMouseLeave(e);
                         }}
+                        disabled={minutes < 1}
                         // onClick={decreaseMinute}
-                        className={`${
-                            open
-                                ? minutes === 0
-                                    ? "opacity-50 cursor-not-allowed"
-                                    : "opacity-100"
-                                : "opacity-0 pointer-events-none"
-                        } rounded-full p-0.5 absolute translate-y-8 transition-opacity inset-x-0`}
+                        className={`rounded-lg py-1 px-3 transform absolute shadow-md translate-y-16  inset-x-0 transition-opacity bg-white mx-auto disabled:opacity-50`}
                     >
-                        <MinusCircleIcon className="h-7 w-7 m-auto text-amber-100" />
+                        <ChevronDownIcon className="h-6 w-6 m-auto text-stone-900" />
                     </button>
                 </div>
                 <div
+                    className={`pointer-events-auto`}
                     onClick={() => {
                         setOpen(true);
                         secondRef.current?.focus();
@@ -186,16 +184,11 @@ const Picker = ({
                             setButtonHover(false);
                             longPressSecondUp.onMouseLeave(e);
                         }}
+                        disabled={seconds > 58}
                         // onClick={increaseSecond}
-                        className={`${
-                            open
-                                ? seconds === 59
-                                    ? "opacity-50 cursor-not-allowed"
-                                    : "opacity-100"
-                                : "opacity-0 pointer-events-none"
-                        } rounded-full p-0.5 absolute -translate-y-9 inset-x-0 transition-opacity`}
+                        className={`rounded-lg py-1 px-3 absolute transform shadow-md -translate-y-[3.25rem] inset-x-0 transition-opacity bg-white mx-auto disabled:opacity-50`}
                     >
-                        <PlusCircleIcon className="h-7 w-7 m-auto text-amber-100" />
+                        <ChevronUpIcon className="h-6 w-6 m-auto text-stone-900" />
                     </button>
                     <input
                         ref={secondRef}
@@ -210,19 +203,21 @@ const Picker = ({
                         min={1}
                         max={59}
                         step={1}
-                        className={`w-8 mx-auto font-mono text-center p-0 transition-all font-bold text-lg outline-none  relative  focus:ring-0 bg-transparent border-none ring-0  ${
-                            !open ? "cursor-pointer" : "pointer-events-auto"
-                        }`}
+                        title="seconds"
+                        className={`w-12 mx-auto font-mono text-center p-0 transition-all font-bold text-4xl outline-none  relative  focus:ring-0 bg-transparent border-none ring-0`}
                         value={("0" + seconds).slice(-2)}
                         onChange={({ target }) => {
-                            if (parseInt(target.value) < 1) return;
-                            setSeconds(parseInt(target.value) % 60);
-                            if (parseInt(target.value) > 59) {
-                                setMinutes(
-                                    Math.round(
-                                        (parseInt(target.value) - 1) / 60
-                                    )
-                                );
+                            if (parseInt(target.value) < 1) {
+                                setSeconds(1);
+                            } else {
+                                setSeconds(parseInt(target.value) % 60);
+                                if (parseInt(target.value) > 59) {
+                                    setMinutes(
+                                        Math.round(
+                                            (parseInt(target.value) - 1) / 60
+                                        )
+                                    );
+                                }
                             }
                         }}
                         type="number"
@@ -234,16 +229,11 @@ const Picker = ({
                             setButtonHover(false);
                             longPressSecondDown.onMouseLeave(e);
                         }}
+                        disabled={seconds < 2}
                         // onClick={decreaseSeconds}
-                        className={`${
-                            open
-                                ? seconds < 2
-                                    ? "opacity-50 cursor-not-allowed"
-                                    : "opacity-100"
-                                : "opacity-0 pointer-events-none"
-                        } rounded-full p-0.5 absolute translate-y-8 transition-opacity inset-x-0`}
+                        className={`rounded-lg py-1 px-3 transform absolute shadow-md translate-y-16 inset-x-0 transition-opacity bg-white mx-auto disabled:opacity-50`}
                     >
-                        <MinusCircleIcon className="h-7 w-7 m-auto text-amber-100" />
+                        <ChevronDownIcon className="h-6 w-6 m-auto text-stone-900" />
                     </button>
                 </div>
             </div>
