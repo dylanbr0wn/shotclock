@@ -7,6 +7,8 @@ import {
 } from "@heroicons/react/outline";
 import { useSpring, a } from "@react-spring/web";
 import * as React from "react";
+import { Link } from "react-router-dom";
+import imgUrl from "../../drip.svg";
 
 const Menu = () => {
     const [open, setOpen] = React.useState(false);
@@ -14,7 +16,46 @@ const Menu = () => {
 
     return (
         <>
-            <button
+            <div className="fixed w-screen h-16 inset-0 bg-white/70 ">
+                <div className="max-w-7xl mx-auto h-full flex py-2">
+                    <Link to="/">
+                        <button className=" my-auto  h-14 px-3 underline decoration-transparent hover:decoration-stone-900   flex ">
+                            <img className="h-8 w-auto my-auto" src={imgUrl} />
+                            <div className="text-lg ml-3 my-auto font-extrabold">
+                                shotclock
+                            </div>
+                        </button>
+                    </Link>
+                    <Link to="/">
+                        <button
+                            onClick={stop}
+                            className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
+                        >
+                            {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
+                            <div className="text-lg my-auto ">home</div>
+                        </button>
+                    </Link>
+                    <Link to="/about">
+                        <button
+                            onClick={stop}
+                            className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
+                        >
+                            {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
+                            <div className="text-lg my-auto ">about</div>
+                        </button>
+                    </Link>
+                    <a href="https://github.com/dylanbr0wn/shotclock">
+                        <button
+                            onClick={stop}
+                            className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
+                        >
+                            {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
+                            <div className="text-lg my-auto ">github</div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            {/* <button
                 onClick={() => setOpen(!open)}
                 className="rounded text-stone-800 hover:text-amber-600 active:bg-amber-600/30 focus:outline-none fixed left-8 top-8 z-40"
             >
@@ -28,7 +69,7 @@ const Menu = () => {
                         !open ? "rotate-90 opacity-0" : ""
                     }`}
                 />
-            </button>
+            </button> */}
             {/* <SlideMenu
                 isOpen={open}
                 onOpen={() => setOpen(true)}
@@ -38,7 +79,7 @@ const Menu = () => {
                 customBurgerIcon={false}
                 customCrossIcon={false}
             > */}
-            <a.div
+            {/* <a.div
                 style={props}
                 className="bg-stone-800  absolute w-screen h-screen z-50"
             >
@@ -90,7 +131,7 @@ const Menu = () => {
                         </a>
                     </div>
                 </div>
-            </a.div>
+            </a.div> */}
             {/* </SlideMenu> */}
         </>
     );

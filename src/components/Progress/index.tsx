@@ -4,39 +4,45 @@ import * as React from "react";
 import Time from "../Time";
 import { useSpring, a, config } from "@react-spring/web";
 
-const Progress = () => {
-    const progressRef = React.useRef<HTMLDivElement>(null);
-    const { time, start, stop, reset, percent, goal, running } =
-        useStopWatch(progressRef);
+interface IProgressProps {
+    running: boolean;
+    percent: number;
+    start: () => void;
+    stop: () => void;
+    reset: () => void;
+}
 
+const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
     const props = useSpring({
         scaleY: running ? 1 : 0.3,
+        translateY: 1, // use this to fix the small line between waves and bar on mobile
         config: config.molasses,
     });
 
     const [{ height }, api] = useSpring(() => ({
-        height: "0%",
+        height: "0vh",
         config: config.molasses,
     }));
 
     React.useEffect(() => {
         api({
-            height: `${percent}%`,
+            height: `${(percent / 100) * 80}%`,
         });
     }, [percent]);
 
     return (
         <>
-            <button onClick={() => start()}>Start</button>
-            <button onClick={() => stop()}>Stop</button>
-            <button onClick={() => reset()}>Reset</button>
-            <div className="absolute top-0 pointer-events-none h-screen overflow-hidden">
-                <div className="flex flex-col h-full">
-                    <a.svg
-                        style={{
-                            ...props,
-                        }}
-                        className={`${styles.waves} mt-auto`}
+            <div className="absolute inset-0 pointer-events-none w-screen h-screen  overflow-hidden">
+                <div className="flex flex-col h-screen">
+                    <svg
+                        // style={{
+                        //     ...props,
+                        // }}
+                        className={`${
+                            styles.waves
+                        } mt-auto flex-shrink-0 h-[1vh] md:h-[10vh] duration-1000 transform translate-y-1 ${
+                            running ? "scale-y-125" : "scale-y-50"
+                        } transition-all  `}
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
                         viewBox="0 24 150 28"
@@ -71,13 +77,13 @@ const Progress = () => {
                                 y="7"
                             />
                         </g>
-                    </a.svg>
-                    <a.div style={{ height }} className="flex bg-amber-800" />
+                    </svg>
+                    <a.div
+                        style={{ height }}
+                        className="flex bg-amber-800 h-[80vh] origin-bottom flex-shrink"
+                    />
                 </div>
             </div>
-            <span className=" absolute transform -translate-x-[50%] -translate-y-[50%] top-[50%] left-[50%] inline-block text-center">
-                <Time time={time} percent={percent} goal={goal} />
-            </span>
         </>
     );
 };
