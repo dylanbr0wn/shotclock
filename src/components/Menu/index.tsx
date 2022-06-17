@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/outline";
 import { useSpring, a } from "@react-spring/web";
 import * as React from "react";
+import { Link } from "react-router-dom";
 import imgUrl from "../../drip.svg";
 
 const Menu = () => {
@@ -15,17 +16,17 @@ const Menu = () => {
 
     return (
         <>
-            <div className="fixed w-screen h-24 inset-0 ">
+            <div className="fixed w-screen h-16 inset-0 bg-white/70 ">
                 <div className="max-w-7xl mx-auto h-full flex py-2">
-                    <a>
+                    <Link to="/">
                         <button className=" my-auto  h-14 px-3 underline decoration-transparent hover:decoration-stone-900   flex ">
                             <img className="h-8 w-auto my-auto" src={imgUrl} />
                             <div className="text-lg ml-3 my-auto font-extrabold">
                                 shotclock
                             </div>
                         </button>
-                    </a>
-                    <a>
+                    </Link>
+                    <Link to="/">
                         <button
                             onClick={stop}
                             className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
@@ -33,8 +34,8 @@ const Menu = () => {
                             {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
                             <div className="text-lg my-auto ">home</div>
                         </button>
-                    </a>
-                    <a>
+                    </Link>
+                    <Link to="/about">
                         <button
                             onClick={stop}
                             className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
@@ -42,8 +43,8 @@ const Menu = () => {
                             {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
                             <div className="text-lg my-auto ">about</div>
                         </button>
-                    </a>
-                    <a>
+                    </Link>
+                    <a href="https://github.com/dylanbr0wn/shotclock">
                         <button
                             onClick={stop}
                             className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
