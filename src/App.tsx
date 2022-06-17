@@ -23,24 +23,24 @@ function App() {
     return (
         <div className="h-screen w-screen bg-amber-50 overflow-hidden selection:bg-amber-500 selection:text-amber-200">
             <Menu />
-            <div className="pt-24 h-full w-full relative">
-                <Progress
-                    start={start}
-                    stop={stop}
-                    reset={reset}
-                    running={running}
-                    percent={percent}
-                />
-                <Time
-                    start={start}
-                    stop={stop}
-                    reset={reset}
-                    time={time}
-                    percent={percent}
-                    running={running}
-                    setGoal={setGoal}
-                />
-            </div>
+            {/* <div className="pt-24 h-full w-full relative pointer-events-none"> */}
+            <Progress
+                start={start}
+                stop={stop}
+                reset={reset}
+                running={running}
+                percent={percent}
+            />
+            <Time
+                start={start}
+                stop={stop}
+                reset={reset}
+                time={time}
+                percent={percent}
+                running={running}
+                setGoal={setGoal}
+            />
+            {/* </div> */}
         </div>
     );
 }

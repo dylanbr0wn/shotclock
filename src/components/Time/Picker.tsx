@@ -29,7 +29,7 @@ const Picker = ({
 }: IPickerProps) => {
     const minuteRef = React.useRef<HTMLInputElement>(null);
     const secondRef = React.useRef<HTMLInputElement>(null);
-    const [buttonHover, setButtonHover] = React.useState(false);
+    // const [buttonHover, setButtonHover] = React.useState(false);
 
     React.useEffect(() => {
         if (!open) {
@@ -115,14 +115,14 @@ const Picker = ({
                     isVisible && "pointer-events-auto"
                 } transition-colors mx-auto shadow-md py-3 px-4 align-middle content-center  rounded-lg border-0 `}
             >
-                <div className="relative z-50">
+                <div className="relative ">
                     <button
                         {...longPressMinuteUp}
-                        onMouseEnter={() => {
-                            setButtonHover(true);
-                        }}
+                        // onMouseEnter={() => {
+                        //     setButtonHover(true);
+                        // }}
                         onMouseLeave={(e) => {
-                            setButtonHover(false);
+                            // setButtonHover(false);
                             longPressMinuteUp.onMouseLeave(e);
                         }}
                         disabled={minutes > 58}
@@ -155,9 +155,9 @@ const Picker = ({
                     />
                     <button
                         {...longPressMinuteDown}
-                        onMouseEnter={() => setButtonHover(true)}
+                        // onMouseEnter={() => setButtonHover(true)}
                         onMouseLeave={(e) => {
-                            setButtonHover(false);
+                            // setButtonHover(false);
                             longPressMinuteDown.onMouseLeave(e);
                         }}
                         disabled={minutes < 1}
@@ -179,9 +179,9 @@ const Picker = ({
                 <div className="relative">
                     <button
                         {...longPressSecondUp}
-                        onMouseEnter={() => setButtonHover(true)}
+                        // onMouseEnter={() => setButtonHover(true)}
                         onMouseLeave={(e) => {
-                            setButtonHover(false);
+                            // setButtonHover(false);
                             longPressSecondUp.onMouseLeave(e);
                         }}
                         disabled={seconds > 58}
@@ -192,7 +192,7 @@ const Picker = ({
                     </button>
                     <input
                         ref={secondRef}
-                        onFocus={() => setOpen(true)}
+                        // onFocus={() => setOpen(true)}
                         // onBlur={(e) => {
                         //     e.preventDefault();
                         //     if (!buttonHover) {
@@ -224,9 +224,9 @@ const Picker = ({
                     />
                     <button
                         {...longPressSecondDown}
-                        onMouseEnter={() => setButtonHover(true)}
+                        // onMouseEnter={() => setButtonHover(true)}
                         onMouseLeave={(e) => {
-                            setButtonHover(false);
+                            // setButtonHover(false);
                             longPressSecondDown.onMouseLeave(e);
                         }}
                         disabled={seconds < 2}

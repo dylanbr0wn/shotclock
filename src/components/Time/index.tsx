@@ -64,7 +64,7 @@ const Time = ({
                 </div>
 
                 {/* <Controls start={start} stop={stop} reset={reset} /> */}
-                <div className="flex flex-col space-y-2 mt-8">
+                <div className="flex flex-col space-y-2 mt-8 bg-amber-700/10 p-2 rounded-lg">
                     <div className="flex mx-auto space-x-2">
                         <button
                             disabled={running}
@@ -108,12 +108,12 @@ const Time = ({
                 >
                     Target Brew Time
                 </div>
-                <div className="flex flex-col mx-auto mt-6 rounded-lg ">
+                <div className="flex flex-col mx-auto  mt-8 rounded-lg ">
                     <a.div
                         style={{ opacity }}
                         className={`text-3xl ${
                             (percent > 0 || !open) && "pointer-events-none"
-                        } flex flex-col  transition-colors mx-auto w-44  h-32`}
+                        } flex flex-col  transition-colors bg-amber-700/10 py-12 px-2 rounded-lg mx-auto`}
                         // onMouseLeave={() => setOpen(false)}
                     >
                         <div className="my-auto">
