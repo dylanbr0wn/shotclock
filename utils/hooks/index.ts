@@ -4,7 +4,7 @@ export const useStopWatch = () => {
     const [time, setTime] = React.useState(0);
     const [running, setRunning] = React.useState(false);
     const [goal, setGoal] = React.useState(1000);
-    const timer = React.useRef(0);
+    const timer = React.useRef<NodeJS.Timer>();
     const [timerStart, setTimerStart] = React.useState(0);
 
     const [percent, setPercent] = React.useState(0);
@@ -48,7 +48,7 @@ const useLongPress = (
     { shouldPreventDefault = true, delay = 300 }: {shouldPreventDefault?: boolean, delay?: number} = {}
     ) => {
     const [longPressTriggered, setLongPressTriggered] = React.useState(false);
-    const timeout = React.useRef<number>();
+    const timeout = React.useRef<NodeJS.Timer>();
     const target = React.useRef<any>();
 
     const start = 
