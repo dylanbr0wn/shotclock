@@ -4,7 +4,6 @@ import {
   RowContentType,
   CollectionType,
   RowType,
-  HandlerRequest,
 } from "../../../utils/api/types";
 import { createResponse } from "../../../utils/api/response";
 import { NextApiRequest, NextApiResponse } from "next";
