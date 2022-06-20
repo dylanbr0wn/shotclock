@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import App from "./App";
 import About from "./components/About";
 import Home from "./components/Home";
@@ -18,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                         <Route index element={<Home />} />
                         <Route path="about" element={<About />} />
                     </Route>
+                    <Route path="*" element={<Navigate to={"/"} />} />
                 </Routes>
             </BrowserRouter>
         </QueryClientProvider>
