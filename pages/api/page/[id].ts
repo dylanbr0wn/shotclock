@@ -3,7 +3,7 @@ import { fetchPageById, fetchBlocks } from "../../../utils/api/notion";
 import { parsePageId } from "../../../utils/api/utils";
 import { createResponse } from "../../../utils/api/response";
 import { getTableData } from "../table/[id]";
-import { BlockType, CollectionType, HandlerRequest } from "../../../utils/api/types";
+import { BlockType, CollectionType} from "../../../utils/api/types";
 
 
 import { NextApiRequest, NextApiResponse } from 'next';
