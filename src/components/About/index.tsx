@@ -5,7 +5,10 @@ import "react-notion/src/styles.css";
 const getAbout = async () => {
     return (
         await fetch(
-            "https://notion-api.splitbee.io/v1/page/shotclock-9ebbc7b285f84acf80c2a961e989ec31"
+            "https://notion-api.splitbee.io/v1/page/shotclock-9ebbc7b285f84acf80c2a961e989ec31",
+            {
+                mode: "cors",
+            }
         )
     ).json();
 };
