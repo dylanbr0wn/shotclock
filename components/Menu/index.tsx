@@ -1,7 +1,8 @@
 import { useSpring, a } from "@react-spring/web";
-import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import { FeedbackFish } from "@feedback-fish/react";
+import Head from "next/head";
 
 const Menu = () => {
     const [open, setOpen] = React.useState(false);
@@ -9,6 +10,33 @@ const Menu = () => {
 
     return (
         <>
+            <Head>
+                <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
+                <link
+                    rel="apple-touch-icon"
+                    sizes="180x180"
+                    href="/apple-touch-icon.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="32x32"
+                    href="/favicon-32x32.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="16x16"
+                    href="/favicon-16x16.png"
+                />
+                <link rel="manifest" href="/site.webmanifest" />
+                <title>shotclock</title>
+                <script async src="https://cdn.splitbee.io/sb.js"></script>
+            </Head>
             <div className="fixed w-screen h-16 inset-0 bg-white/70 ">
                 <div className="max-w-7xl mx-auto h-full flex py-2">
                     <Link href="/">
@@ -63,6 +91,13 @@ const Menu = () => {
                             <div className="text-lg my-auto ">github</div>
                         </button>
                     </a>
+                    <div className="w-full"></div>
+                    <FeedbackFish projectId="98bcbfde97c737">
+                        <button className="underline text-stone-600 decoration-transparent hover:decoration-stone-600 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
+                            {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
+                            <div className="text-lg my-auto ">feedback</div>
+                        </button>
+                    </FeedbackFish>
                 </div>
             </div>
             {/* <button
