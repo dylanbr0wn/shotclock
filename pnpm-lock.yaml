@@ -6,6 +6,7 @@ specifiers:
   '@heroicons/react': ^1.0.6
   '@mantine/hooks': ^4.2.8
   '@react-spring/web': ^9.4.5
+  '@splitbee/web': ^0.3.0
   '@tailwindcss/forms': ^0.5.2
   '@types/node': ^18.0.0
   '@types/react': ^18.0.12
@@ -32,6 +33,7 @@ dependencies:
   '@heroicons/react': 1.0.6_react@18.1.0
   '@mantine/hooks': 4.2.8_react@18.1.0
   '@react-spring/web': 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
+  '@splitbee/web': 0.3.0
   dayjs: 1.11.3
   next: 12.1.6_4cbhpxftn776lqv6vk34lzjmlm
   react: 18.1.0
@@ -334,6 +336,10 @@ packages:
   /@rushstack/eslint-patch/1.1.3:
     resolution: {integrity: sha512-WiBSI6JBIhC6LRIsB2Kwh8DsGTlbBU+mLRxJmAe3LjHTdkDpwIbEOZgoXBbZilk/vlfjK8i6nKRAvIRn1XaIMw==}
     dev: true
+
+  /@splitbee/web/0.3.0:
+    resolution: {integrity: sha512-jNPDKg0GQGa4jCaBc6JQsv0NHmBA80WCwZE49nFyhcbo32WF0GyqXeice7ZApy7OUHI16bAUAzm4MOQw3gvxfQ==}
+    dev: false
 
   /@tailwindcss/forms/0.5.2_tailwindcss@3.0.24:
     resolution: {integrity: sha512-pSrFeJB6Bg1Mrg9CdQW3+hqZXAKsBrSG9MAfFLKy1pVA4Mb4W7C0k7mEhlmS2Dfo/otxrQOET7NJiJ9RrS563w==}

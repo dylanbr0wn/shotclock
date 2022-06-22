@@ -35,7 +35,7 @@ const Menu = () => {
                 />
                 <link rel="manifest" href="/site.webmanifest" />
                 <title>shotclock</title>
-                <script async src="https://cdn.splitbee.io/sb.js"></script>
+                <script async data-api="/_hive" src="/bee.js"></script>
             </Head>
             <div className="fixed w-screen h-16 inset-0 bg-white/70 ">
                 <div className="max-w-7xl mx-auto h-full flex py-2">
