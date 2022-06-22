@@ -10,3 +10,23 @@ The inspiration for this little project spawned from a recent binge of [James Ho
 > 
 
 Unfortunately, the one feature I am (currently) unable to replicate with shotclock is the deep hardware/software integration that is possible with some scales. Maybe future me will venture into this space one day, but for now the goal is to keep it simple.
+
+## Build it yourself
+
+First off, get this sucker onto your computer, once your there open the folder and install the dependencies
+
+```bash
+pnpm i
+# or for npm
+npm i
+```
+
+Once you have done that, spin up the dev server
+
+```bash
+pnpm dev
+# or for npm
+npm run dev
+```
+
+Have fun!
