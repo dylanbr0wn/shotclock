@@ -110,13 +110,6 @@ const TasteForm = ({ closeModal }: { closeModal: () => void }) => {
                                     />
                                 </label>
                             </div>
-                            <div className="flex space-x-3">
-                                <label className="flex flex-col w-2/3">
-                                    <div className=" text-sm text-stone-500">
-                                        Coffee Type:
-                                    </div>
-                                </label>
-                            </div>
                         </div>
                     </FormDisclosure>
                 </div>
