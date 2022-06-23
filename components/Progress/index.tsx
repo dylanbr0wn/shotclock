@@ -3,16 +3,24 @@ import styles from "./Progress.module.scss";
 import * as React from "react";
 import Time from "../Time";
 import { useSpring, a, config } from "@react-spring/web";
+import useStore from "../../utils/zustand";
+import shallow from "zustand/shallow";
 
 interface IProgressProps {
-    running: boolean;
-    percent: number;
     start: () => void;
     stop: () => void;
     reset: () => void;
 }
 
-const Progress = ({ stop, start, reset, percent, running }: IProgressProps) => {
+const Progress = ({ stop, start, reset }: IProgressProps) => {
+    const { percent, running } = useStore(
+        (state) => ({
+            running: state.running,
+            percent: state.percent,
+        }),
+        shallow
+    );
+
     const props = useSpring({
         scaleY: running ? 1 : 0.3,
         translateY: 1, // use this to fix the small line between waves and bar on mobile

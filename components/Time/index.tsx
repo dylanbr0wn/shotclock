@@ -7,25 +7,28 @@ import {
 } from "@heroicons/react/outline";
 import { config, useSpring, a } from "@react-spring/web";
 import * as React from "react";
-import Controls, { IControlsProps } from "../Controls";
+import shallow from "zustand/shallow";
+import useStore from "../../utils/zustand";
 import Picker from "./Picker";
+import SaveButton from "./SaveButton";
 
-interface ITimeProps extends IControlsProps {
-    time: number;
-    percent: number;
-    setGoal: (goal: number) => void;
-    running: boolean;
+interface ITimeProps {
+    start: () => void;
+    stop: () => void;
+    reset: () => void;
 }
 
-const Time = ({
-    time,
-    percent,
-    setGoal,
-    start,
-    stop,
-    reset,
-    running,
-}: ITimeProps) => {
+const Time = ({ start, stop, reset }: ITimeProps) => {
+    const { percent, running, setGoal, time } = useStore(
+        (state) => ({
+            running: state.running,
+            percent: state.percent,
+            setGoal: state.setGoal,
+            time: state.time,
+        }),
+        shallow
+    );
+
     const [open, setOpen] = React.useState(true);
 
     const [seconds, setSeconds] = React.useState(23);
@@ -34,10 +37,6 @@ const Time = ({
     const { opacity } = useSpring({
         opacity: time > 0 ? 0 : 1,
         config: config.molasses,
-    });
-
-    const { scale } = useSpring({
-        scale: open ? 2 : 1,
     });
 
     React.useEffect(() => {
@@ -62,8 +61,6 @@ const Time = ({
                     {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
                     {("0" + (Math.floor(time / 10) % 100)).slice(-2)}
                 </div>
-
-                {/* <Controls start={start} stop={stop} reset={reset} /> */}
                 <div className="flex flex-col space-y-2 mt-8 bg-amber-700/10 p-2 rounded-lg">
                     <div className="flex mx-auto space-x-2">
                         <button
@@ -92,13 +89,7 @@ const Time = ({
                             <RefreshIcon className="h-8 w-8 mx-4" />
                             <div className="text-2xl my-auto ">Reset</div>
                         </button>
-                        <button
-                            disabled={time === 0}
-                            className="hover:text-amber-600 transition-all  rounded-lg px-4 py-3 w-44 bg-white flex  shadow-md disabled:opacity-60 disabled:pointer-events-none"
-                        >
-                            <BookmarkIcon className="h-8 w-8 mx-4" />
-                            <div className="text-2xl my-auto ">Save</div>
-                        </button>
+                        <SaveButton />
                     </div>
                 </div>
                 <div

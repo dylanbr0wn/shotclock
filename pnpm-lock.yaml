@@ -4,10 +4,12 @@ specifiers:
   '@feedback-fish/react': ^1.2.1
   '@headlessui/react': ^1.6.4
   '@heroicons/react': ^1.0.6
+  '@hookform/resolvers': ^2.9.1
   '@mantine/hooks': ^4.2.8
   '@react-spring/web': ^9.4.5
   '@splitbee/web': ^0.3.0
   '@tailwindcss/forms': ^0.5.2
+  '@types/howler': ^2.2.7
   '@types/node': ^18.0.0
   '@types/react': ^18.0.12
   '@types/react-dom': ^18.0.5
@@ -15,34 +17,46 @@ specifiers:
   dayjs: ^1.11.3
   eslint: ^8.18.0
   eslint-config-next: ^12.1.6
+  howler: ^2.2.3
   next: ^12.1.6
   postcss: ^8.4.14
   react: ^18.1.0
   react-dom: ^18.1.0
   react-error-boundary: ^3.1.4
+  react-hook-form: ^7.32.2
   react-notion: ^0.10.0
   react-query: ^3.39.1
   react-router-dom: '6'
   sass: ^1.52.2
+  superjson: ^1.9.1
   tailwindcss: ^3.0.24
   typescript: ^4.7.3
+  zod: ^3.17.3
+  zustand: 4.0.0-rc.1
 
 dependencies:
   '@feedback-fish/react': 1.2.1_react@18.1.0
   '@headlessui/react': 1.6.4_ef5jwxihqo6n7gxfmzogljlgcm
   '@heroicons/react': 1.0.6_react@18.1.0
+  '@hookform/resolvers': 2.9.1_react-hook-form@7.32.2
   '@mantine/hooks': 4.2.8_react@18.1.0
   '@react-spring/web': 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
   '@splitbee/web': 0.3.0
+  '@types/howler': 2.2.7
   dayjs: 1.11.3
+  howler: 2.2.3
   next: 12.1.6_4cbhpxftn776lqv6vk34lzjmlm
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
   react-error-boundary: 3.1.4_react@18.1.0
+  react-hook-form: 7.32.2_react@18.1.0
   react-notion: 0.10.0_react@18.1.0
   react-query: 3.39.1_ef5jwxihqo6n7gxfmzogljlgcm
   react-router-dom: 6.3.0_ef5jwxihqo6n7gxfmzogljlgcm
   sass: 1.52.2
+  superjson: 1.9.1
+  zod: 3.17.3
+  zustand: 4.0.0-rc.1_react@18.1.0
 
 devDependencies:
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.0.24
@@ -115,6 +129,14 @@ packages:
       react: '>= 16'
     dependencies:
       react: 18.1.0
+    dev: false
+
+  /@hookform/resolvers/2.9.1_react-hook-form@7.32.2:
+    resolution: {integrity: sha512-80lyFFcExEB7A09PFnl8k7A3obQyDF6MyO/FThtwetk+MTedYMs08Aqf7mgWnOawFGyz5QF+TZXJSYiIZW2tEg==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.32.2_react@18.1.0
     dev: false
 
   /@humanwhocodes/config-array/0.9.5:
@@ -349,6 +371,10 @@ packages:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.0.24
     dev: true
+
+  /@types/howler/2.2.7:
+    resolution: {integrity: sha512-PEZldwZqJJw1PWRTpupyC7ajVTZA8aHd8nB/Y0n6zRZi5u8ktYDntsHj13ltEiBRqWwF06pASxBEvCTxniG8eA==}
+    dev: false
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
@@ -688,6 +714,13 @@ packages:
 
   /concat-map/0.0.1:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+
+  /copy-anything/3.0.2:
+    resolution: {integrity: sha512-CzATjGXzUQ0EvuvgOCI6A4BGOo2bcVx8B+eC2nF862iv9fopnPQwlrbACakNCHRIJbCSBj+J/9JeDf60k64MkA==}
+    engines: {node: '>=12.13'}
+    dependencies:
+      is-what: 4.1.7
+    dev: false
 
   /core-js-pure/3.23.1:
     resolution: {integrity: sha512-3qNgf6TqI3U1uhuSYRzJZGfFd4T+YlbyVPl+jgRiKjdZopvG4keZQwWZDAWpu1UH9nCgTpUzIV3GFawC7cJsqg==}
@@ -1352,6 +1385,10 @@ packages:
       '@babel/runtime': 7.18.3
     dev: false
 
+  /howler/2.2.3:
+    resolution: {integrity: sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==}
+    dev: false
+
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
@@ -1489,6 +1526,11 @@ packages:
     dependencies:
       call-bind: 1.0.2
     dev: true
+
+  /is-what/4.1.7:
+    resolution: {integrity: sha512-DBVOQNiPKnGMxRMLIYSwERAS5MVY1B7xYiGnpgctsOFvVDz9f9PFXXxMcTOHuoqYp4NK9qFYQaIC1NRRxLMpBQ==}
+    engines: {node: '>=12.13'}
+    dev: false
 
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
@@ -1959,6 +2001,15 @@ packages:
       react: 18.1.0
     dev: false
 
+  /react-hook-form/7.32.2_react@18.1.0:
+    resolution: {integrity: sha512-F1A6n762xaRhvtQH5SkQQhMr19cCkHZYesTcKJJeNmrphiZp/cYFTIzC05FnQry0SspM54oPJ9tXFXlzya8VNQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.1.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -2207,6 +2258,13 @@ packages:
       react: 18.1.0
     dev: false
 
+  /superjson/1.9.1:
+    resolution: {integrity: sha512-oT3HA2nPKlU1+5taFgz/HDy+GEaY+CWEbLzaRJVD4gZ7zMVVC4GDNFdgvAZt6/VuIk6D2R7RtPAiCHwmdzlMmg==}
+    engines: {node: '>=10'}
+    dependencies:
+      copy-anything: 3.0.2
+    dev: false
+
   /supports-color/7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
@@ -2322,6 +2380,14 @@ packages:
       punycode: 2.1.1
     dev: true
 
+  /use-sync-external-store/1.1.0_react@18.1.0:
+    resolution: {integrity: sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.1.0
+    dev: false
+
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
     dev: true
@@ -2369,3 +2435,23 @@ packages:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
     dev: true
+
+  /zod/3.17.3:
+    resolution: {integrity: sha512-4oKP5zvG6GGbMlqBkI5FESOAweldEhSOZ6LI6cG+JzUT7ofj1ZOC0PJudpQOpT1iqOFpYYtX5Pw0+o403y4bcg==}
+    dev: false
+
+  /zustand/4.0.0-rc.1_react@18.1.0:
+    resolution: {integrity: sha512-qgcs7zLqBdHu0PuT3GW4WCIY5SgXdsv30GQMu9Qpp1BA2aS+sNS8l4x0hWuyEhjXkN+701aGWawhKDv6oWJAcw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.1.0
+      use-sync-external-store: 1.1.0_react@18.1.0
+    dev: false

@@ -6,7 +6,7 @@ import {
     PlusIcon,
 } from "@heroicons/react/outline";
 import * as React from "react";
-import useLongPress from "../../utils/hooks";
+import useLongPress from "../../utils/hooks/useLongPress";
 
 interface IPickerProps {
     seconds: number;
