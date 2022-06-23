@@ -14,6 +14,7 @@ specifiers:
   '@types/react': ^18.0.12
   '@types/react-dom': ^18.0.5
   autoprefixer: ^10.4.7
+  cuid: ^2.1.8
   dayjs: ^1.11.3
   eslint: ^8.18.0
   eslint-config-next: ^12.1.6
@@ -24,6 +25,7 @@ specifiers:
   react-dom: ^18.1.0
   react-error-boundary: ^3.1.4
   react-hook-form: ^7.32.2
+  react-hot-toast: ^2.2.0
   react-notion: ^0.10.0
   react-query: ^3.39.1
   react-router-dom: '6'
@@ -43,6 +45,7 @@ dependencies:
   '@react-spring/web': 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
   '@splitbee/web': 0.3.0
   '@types/howler': 2.2.7
+  cuid: 2.1.8
   dayjs: 1.11.3
   howler: 2.2.3
   next: 12.1.6_4cbhpxftn776lqv6vk34lzjmlm
@@ -50,6 +53,7 @@ dependencies:
   react-dom: 18.1.0_react@18.1.0
   react-error-boundary: 3.1.4_react@18.1.0
   react-hook-form: 7.32.2_react@18.1.0
+  react-hot-toast: 2.2.0_ef5jwxihqo6n7gxfmzogljlgcm
   react-notion: 0.10.0_react@18.1.0
   react-query: 3.39.1_ef5jwxihqo6n7gxfmzogljlgcm
   react-router-dom: 6.3.0_ef5jwxihqo6n7gxfmzogljlgcm
@@ -746,6 +750,10 @@ packages:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
     dev: true
 
+  /cuid/2.1.8:
+    resolution: {integrity: sha512-xiEMER6E7TlTPnDxrM4eRiC6TRgjNX9xzEZ5U/Se2YJKr7Mq4pJn/2XEHjl3STcSh96GmkHPcBXLES8M29wyyg==}
+    dev: false
+
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
@@ -1344,6 +1352,12 @@ packages:
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
+
+  /goober/2.1.10:
+    resolution: {integrity: sha512-7PpuQMH10jaTWm33sQgBQvz45pHR8N4l3Cu3WMGEWmHShAcTuuP7I+5/DwKo39fwti5A80WAjvqgz6SSlgWmGA==}
+    peerDependencies:
+      csstype: ^3.0.10
+    dev: false
 
   /has-bigints/1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
@@ -2008,6 +2022,20 @@ packages:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
       react: 18.1.0
+    dev: false
+
+  /react-hot-toast/2.2.0_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-248rXw13uhf/6TNDVzagX+y7R8J183rp7MwUMNkcrBRyHj/jWOggfXTGlM8zAOuh701WyVW+eUaWG2LeSufX9g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      goober: 2.1.10
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+    transitivePeerDependencies:
+      - csstype
     dev: false
 
   /react-is/16.13.1:
