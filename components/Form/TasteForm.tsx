@@ -1,47 +1,27 @@
-import { Controller, useForm } from "react-hook-form";
-import z from "zod";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useLocalStorage from "../../utils/hooks/useLocalStorage";
 import useStore from "../../utils/zustand";
 import shallow from "zustand/shallow";
-import { Disclosure, Listbox, RadioGroup, Transition } from "@headlessui/react";
 import * as React from "react";
-import BrewType, { zBrewMethod } from "./BrewType";
+import BrewType from "./BrewType";
 import FormDisclosure from "./FormDisclosure";
-import Roast, { zRoast } from "./Roast";
+import Roast from "./Roast";
 import Rating from "./Rating";
 import cuid from "cuid";
 import toast from "react-hot-toast";
+import useBrews from "../../utils/hooks/useBrew";
+import { Brew, zBrew } from "../../utils/types";
 const notify = () => toast.success("Saved your brew ☕️");
 const notifyError = () => toast.error("Uh oh... soemthing broke 😬");
 
-export const zTasteForm = z.object({
-    name: z.string(),
-    time: z.number(),
-    coffeeName: z.string().optional(),
-    coffeeType: zBrewMethod.optional(),
-    coffeeRoast: zRoast.optional(),
-    grindSetting: z.string().optional(),
-    coffeeIn: z.number().min(0).optional(),
-    coffeeOut: z.number().min(0).optional(),
-    // aroma: z.string().optional(),
-    // sweetness: z.string().optional(),
-    // body: z.string().optional(),
-    // aftertaste: z.string().optional(),
-    // taste: z.string().optional(),
-    // bitterness: z.string().optional(),
-    rating: z.number().min(0).max(10).step(1).optional(),
-    comments: z.string().optional(),
-});
-
-const zTasteForms = z.array(zTasteForm.merge(z.object({ id: z.string() })));
-
-const TasteForm = ({ closeModal }: { closeModal: () => void }) => {
-    const [forms, setForms] = useLocalStorage<z.infer<typeof zTasteForms>>(
-        "tasteForms",
-        []
-    );
-    const [coffeeTasteOpen, setcoffeeTasteOpen] = React.useState(false);
+const TasteForm = ({
+    closeModal,
+    defaultForm,
+}: {
+    closeModal: () => void;
+    defaultForm?: Brew | undefined;
+}) => {
+    const { addBrew } = useBrews();
     const { time } = useStore((state) => ({ time: state.time }), shallow);
 
     const {
@@ -51,20 +31,24 @@ const TasteForm = ({ closeModal }: { closeModal: () => void }) => {
         control,
         getValues,
         setValue,
-        formState: { errors },
-    } = useForm<z.infer<typeof zTasteForm>>({
+        formState: { errors, isValid },
+    } = useForm<Brew>({
         mode: "onChange",
         reValidateMode: "onChange",
-        resolver: zodResolver(zTasteForm),
-        defaultValues: {
-            name: "",
-            time: time,
-        },
+        resolver: zodResolver(zBrew),
+        defaultValues: defaultForm
+            ? {
+                  ...defaultForm,
+              }
+            : {
+                  time,
+              },
     });
 
-    const onSubmit = (data: z.infer<typeof zTasteForm>) => {
+    const onSubmit = (data: Brew) => {
+        if (!isValid) return;
         try {
-            setForms([...forms, { ...data, id: cuid() }]);
+            addBrew({ ...data, id: cuid(), created: new Date().toISOString() });
             notify();
             closeModal();
         } catch (e) {
@@ -82,7 +66,7 @@ const TasteForm = ({ closeModal }: { closeModal: () => void }) => {
                         <input
                             placeholder="My best brew ever!!"
                             className="p-2 rounded-lg border border-stone-200 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
-                            {...register("name")}
+                            {...register("name", { required: true })}
                         />
                     </label>
                 </div>
@@ -219,13 +203,17 @@ const TasteForm = ({ closeModal }: { closeModal: () => void }) => {
                     </label>
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4 flex ">
                     <button
                         type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-amber-100 px-4 py-2 text-sm font-medium text-amber-900 hover:bg-amber-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-amber-100 px-4 py-2  font-medium text-amber-900 hover:bg-amber-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 transition-colors"
                     >
                         Save this sucker!
                     </button>
+
+                    <div className="my-auto text-red-500 text-sm px-4 flex-grow">
+                        {errors?.name?.message}
+                    </div>
                 </div>
             </form>
         </div>

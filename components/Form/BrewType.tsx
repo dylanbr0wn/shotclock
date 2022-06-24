@@ -2,14 +2,14 @@ import { Listbox, Transition } from "@headlessui/react";
 import {
     Controller,
     Control,
-    SetFieldValue,
     UseFormSetValue,
     UseFormGetValues,
 } from "react-hook-form";
 import z from "zod";
 import * as React from "react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/outline";
-import { zTasteForm } from "./TasteForm";
+
+import { Brew, IZBrewMethod } from "../../utils/types";
 
 const brewMethods = [
     { id: "chemex", name: "Chemex" },
@@ -29,20 +29,15 @@ const brewMethods = [
     { id: "other", name: "Other" },
 ];
 
-export const zBrewMethod = z.object({
-    name: z.string(),
-    id: z.string(),
-});
-
 interface IBrewType {
-    control: Control<z.infer<typeof zTasteForm>>;
-    setValue: UseFormSetValue<z.infer<typeof zTasteForm>>;
-    getValues: UseFormGetValues<z.infer<typeof zTasteForm>>;
+    control: Control<Brew>;
+    setValue: UseFormSetValue<Brew>;
+    getValues: UseFormGetValues<Brew>;
 }
 
 const BrewType = ({ control, setValue, getValues }: IBrewType) => {
     const [selectedBrewMethod, setSelectedBrewMethod] =
-        React.useState<z.infer<typeof zBrewMethod>>();
+        React.useState<IZBrewMethod>();
     return (
         <Controller
             control={control}

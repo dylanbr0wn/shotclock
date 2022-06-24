@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import shallow from "zustand/shallow";
 import useStore from "../../utils/zustand";
 import * as React from "react";
-import TasteForm from "./TasteForm";
+import TasteForm from "../Form/TasteForm";
 
 const SaveButton = () => {
     const { time } = useStore((state) => ({ time: state.time }), shallow);
@@ -52,7 +52,7 @@ const SaveButton = () => {
                                         as="h3"
                                         className="text-lg font-medium leading-6 text-gray-900"
                                     >
-                                        Save your coffee
+                                        Your Brew
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <TasteForm closeModal={closeModal} />

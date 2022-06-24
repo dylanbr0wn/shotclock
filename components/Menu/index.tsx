@@ -1,4 +1,3 @@
-import { useSpring, a } from "@react-spring/web";
 import Link from "next/link";
 import * as React from "react";
 import { FeedbackFish } from "@feedback-fish/react";
@@ -35,7 +34,7 @@ const Menu = () => {
                 <title>shotclock</title>
                 <Script async data-api="/_hive" src="/bee.js"></Script>
             </Head>
-            <div className="fixed w-screen h-16 inset-0 bg-white/70 ">
+            <div className="fixed w-screen h-16 z-10 inset-0 bg-white/70 ">
                 <div className="max-w-7xl mx-auto h-full flex py-2">
                     <Link href="/">
                         <a>
@@ -67,11 +66,11 @@ const Menu = () => {
                             </button>
                         </a>
                     </Link>
-                    <Link href="/">
+                    <Link href="/brews">
                         <a>
                             <button className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
                                 {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
-                                <div className="text-lg my-auto ">home</div>
+                                <div className="text-lg my-auto ">my brews</div>
                             </button>
                         </a>
                     </Link>
@@ -83,19 +82,20 @@ const Menu = () => {
                             </button>
                         </a>
                     </Link>
-                    <a href="https://github.com/dylanbr0wn/shotclock">
-                        <button className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
-                            {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
-                            <div className="text-lg my-auto ">github</div>
-                        </button>
-                    </a>
-                    <div className="w-full"></div>
+
+                    <div className="flex-grow"></div>
                     <FeedbackFish projectId="98bcbfde97c737">
                         <button className="underline text-stone-600 decoration-transparent hover:decoration-stone-600 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
                             {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
                             <div className="text-lg my-auto ">feedback</div>
                         </button>
                     </FeedbackFish>
+                    <a href="https://github.com/dylanbr0wn/shotclock">
+                        <button className="underline text-stone-600 decoration-transparent hover:decoration-stone-600 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
+                            {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
+                            <div className="text-lg my-auto ">github</div>
+                        </button>
+                    </a>
                 </div>
             </div>
             {/* <button

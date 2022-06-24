@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Howl, Howler } from "howler";
+import { Howl } from "howler";
 import useStore from "../zustand";
 import shallow from 'zustand/shallow'
 

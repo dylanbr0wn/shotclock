@@ -9,14 +9,18 @@ interface TimeSlice {
     setPercent: (newPercent: number) => void
     running: boolean
     setRunning: (isRunning: boolean) => void
+    goalLoaded: boolean
+    setGoalLoaded: (newGoalLoaded: boolean) => void
 }
 
 
 const createTimeSlice: StateCreator<TimeSlice, [], []> = (set) => ({
     time: 0,
     setTime: (newTime) => set(() => ({ time: newTime })),
-    goal: 0,
+    goal: 23000,
     setGoal: (newGoal) => set(() => ({ goal: newGoal })),
+    goalLoaded: false,
+    setGoalLoaded: (newGoalLoaded) => set(() => ({ goalLoaded: newGoalLoaded })),
     percent: 0,
     setPercent: (newPercent) => set(() => ({ percent: newPercent })),
     running: false,

@@ -1,18 +1,10 @@
-import { useStopWatch } from "../../utils/hooks";
 import styles from "./Progress.module.scss";
 import * as React from "react";
-import Time from "../Time";
 import { useSpring, a, config } from "@react-spring/web";
 import useStore from "../../utils/zustand";
 import shallow from "zustand/shallow";
 
-interface IProgressProps {
-    start: () => void;
-    stop: () => void;
-    reset: () => void;
-}
-
-const Progress = ({ stop, start, reset }: IProgressProps) => {
+const Progress = () => {
     const { percent, running } = useStore(
         (state) => ({
             running: state.running,
@@ -20,12 +12,6 @@ const Progress = ({ stop, start, reset }: IProgressProps) => {
         }),
         shallow
     );
-
-    const props = useSpring({
-        scaleY: running ? 1 : 0.3,
-        translateY: 1, // use this to fix the small line between waves and bar on mobile
-        config: config.molasses,
-    });
 
     const [{ height }, api] = useSpring(() => ({
         height: "0vh",

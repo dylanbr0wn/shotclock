@@ -14,7 +14,7 @@ const About = () => {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <div className="max-w-3xl mx-auto mt-10">
+        <div className="max-w-3xl mx-auto mt-10 text-stone-900">
             <NotionRenderer blockMap={data.body} />
         </div>
     );

@@ -1,24 +1,14 @@
-import {
-    BookmarkIcon,
-    PauseIcon,
-    PlayIcon,
-    RefreshIcon,
-    StopIcon,
-} from "@heroicons/react/outline";
+import { PauseIcon, PlayIcon, RefreshIcon } from "@heroicons/react/outline";
 import { config, useSpring, a } from "@react-spring/web";
 import * as React from "react";
 import shallow from "zustand/shallow";
+import { useStopWatch } from "../../utils/hooks";
 import useStore from "../../utils/zustand";
 import Picker from "./Picker";
 import SaveButton from "./SaveButton";
 
-interface ITimeProps {
-    start: () => void;
-    stop: () => void;
-    reset: () => void;
-}
-
-const Time = ({ start, stop, reset }: ITimeProps) => {
+const Time = () => {
+    const { start, stop, reset } = useStopWatch();
     const { percent, running, setGoal, time } = useStore(
         (state) => ({
             running: state.running,
@@ -29,21 +19,10 @@ const Time = ({ start, stop, reset }: ITimeProps) => {
         shallow
     );
 
-    const [open, setOpen] = React.useState(true);
-
-    const [seconds, setSeconds] = React.useState(23);
-    const [minutes, setMinutes] = React.useState(0);
-
     const { opacity } = useSpring({
         opacity: time > 0 ? 0 : 1,
         config: config.molasses,
     });
-
-    React.useEffect(() => {
-        if (setGoal) {
-            setGoal(minutes * 60 * 1000 + seconds * 1000);
-        }
-    }, [minutes, seconds]);
 
     return (
         <>
@@ -103,21 +82,13 @@ const Time = ({ start, stop, reset }: ITimeProps) => {
                     <a.div
                         style={{ opacity }}
                         className={`text-3xl ${
-                            (percent > 0 || !open) && "pointer-events-none"
+                            percent > 0 && "pointer-events-none"
                         } flex flex-col  transition-colors bg-amber-700/10 py-12 px-2 rounded-lg mx-auto`}
                         // onMouseLeave={() => setOpen(false)}
                     >
                         <div className="my-auto">
                             <div className="my-auto flex space-x-0.5">
-                                <Picker
-                                    isVisible={time === 0}
-                                    minutes={minutes}
-                                    seconds={seconds}
-                                    setMinutes={setMinutes}
-                                    setSeconds={setSeconds}
-                                    setOpen={setOpen}
-                                    open={open}
-                                />
+                                <Picker />
                                 {/* <div className="w-full text-left">s</div> */}
                             </div>
                         </div>

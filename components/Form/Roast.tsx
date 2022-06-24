@@ -1,13 +1,7 @@
 import { RadioGroup } from "@headlessui/react";
 import { Control, Controller, UseFormSetValue } from "react-hook-form";
-import z from "zod";
 import * as React from "react";
-import { zTasteForm } from "./TasteForm";
-
-export const zRoast = z.object({
-    name: z.string(),
-    id: z.string(),
-});
+import { IZRoast, Brew } from "../../utils/types";
 
 const roasts = [
     { id: "light", name: "Light", bg: "bg-amber-500" },
@@ -16,12 +10,12 @@ const roasts = [
 ];
 
 interface IRoast {
-    control: Control<z.infer<typeof zTasteForm>>;
-    setValue: UseFormSetValue<z.infer<typeof zTasteForm>>;
+    control: Control<Brew>;
+    setValue: UseFormSetValue<Brew>;
 }
 
-const Roast = ({ control, setValue }) => {
-    const [roast, setRoast] = React.useState<z.infer<typeof zRoast>>();
+const Roast = ({ control, setValue }: IRoast) => {
+    const [roast, setRoast] = React.useState<IZRoast>();
     return (
         <Controller
             name="coffeeRoast"
@@ -31,7 +25,7 @@ const Roast = ({ control, setValue }) => {
                     ref={field.ref}
                     name="coffeeRoast"
                     value={roast}
-                    onChange={(val) => {
+                    onChange={(val: IZRoast) => {
                         setRoast(val);
                         setValue("coffeeRoast", val, {
                             shouldValidate: true,
