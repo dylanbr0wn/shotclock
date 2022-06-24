@@ -58,7 +58,7 @@ const CustTable = () => {
                         return (
                             <tr
                                 onClick={() => loadBrew(brew)}
-                                className="odd:bg-amber-50 dark:odd:bg-stone-800 cursor-pointer"
+                                className="odd:bg-amber-50 dark:odd:bg-stone-800 cursor-pointer hover:bg-amber-50 odd:hover:bg-amber-100 dark:hover:bg-stone-800 dark:odd:hover:bg-stone-700"
                                 key={brew.id}
                             >
                                 <td className="whitespace-nowrap border-b border-amber-200 dark:border-stone-700 py-4 pl-4 pr-3 text-sm font-medium text-stone-900 dark:text-amber-100 sm:pl-6 lg:pl-8">

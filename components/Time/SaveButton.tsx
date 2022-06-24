@@ -20,6 +20,7 @@ const SaveButton = () => {
     return (
         <>
             <button
+                title="save"
                 onClick={openModal}
                 disabled={time === 0 || running}
                 className="hover:text-amber-600 dark:hover:text-amber-600  transition-all  rounded-lg px-4 py-3 w-44 bg-white dark:bg-stone-900 dark:text-amber-100 flex  shadow-md disabled:opacity-60 disabled:pointer-events-none"

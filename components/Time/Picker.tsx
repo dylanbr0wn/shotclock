@@ -51,6 +51,7 @@ const Picker = () => {
             >
                 <div className="relative ">
                     <button
+                        title="add minute"
                         // {...longPressMinuteUp}
                         // // onMouseEnter={() => {
                         // //     setButtonHover(true);
@@ -91,6 +92,7 @@ const Picker = () => {
                         type="number"
                     />
                     <button
+                        title="minus minute"
                         // {...longPressMinuteDown}
                         // // onMouseEnter={() => setButtonHover(true)}
                         // onMouseLeave={(e) => {
@@ -114,6 +116,7 @@ const Picker = () => {
                 </div>
                 <div className="relative">
                     <button
+                        title="add second"
                         // {...longPressSecondUp}
                         // // onMouseEnter={() => setButtonHover(true)}
                         // onMouseLeave={(e) => {
@@ -172,6 +175,7 @@ const Picker = () => {
                         type="number"
                     />
                     <button
+                        title="minus second"
                         // {...longPressSecondDown}
                         // // onMouseEnter={() => setButtonHover(true)}
                         // onMouseLeave={(e) => {

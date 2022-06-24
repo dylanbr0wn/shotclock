@@ -3,6 +3,7 @@ import Menu from "./Menu";
 
 import * as React from "react";
 import { useTheme } from "next-themes";
+import Welcome from "./Welcome";
 
 const AppWrapper = ({ children }: { children: React.ReactNode }) => {
     const { theme } = useTheme();
@@ -22,6 +23,7 @@ const AppWrapper = ({ children }: { children: React.ReactNode }) => {
                 <Menu />
                 {children}
             </div>
+            <Welcome />
             <Toaster />
         </div>
     );

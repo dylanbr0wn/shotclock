@@ -2,7 +2,6 @@
 import { fetchPageById, parsePageBlocks } from "../../../utils/api/notion";
 import { parsePageId } from "../../../utils/api/utils";
 import { createResponse } from "../../../utils/api/response";
-import { getTableData } from "../table/[id]";
 
 
 import { NextApiRequest, NextApiResponse } from 'next';

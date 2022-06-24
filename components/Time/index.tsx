@@ -45,6 +45,7 @@ const Time = () => {
                 <div className="flex flex-col space-y-2 mt-8 bg-amber-700/10 dark:bg-amber-100/70 p-2 rounded-lg">
                     <div className="flex mx-auto space-x-2">
                         <button
+                            title="start"
                             disabled={running}
                             onClick={start}
                             className="rounded-lg px-4 py-3 bg-white dark:bg-stone-900 dark:text-amber-100  flex transition-all  duration-300 hover:text-green-500 dark:hover:text-green-500 shadow-md w-44 disabled:opacity-60  disabled:pointer-events-none"
@@ -53,6 +54,7 @@ const Time = () => {
                             <div className="text-2xl my-auto ">Start</div>
                         </button>
                         <button
+                            title="pause"
                             disabled={!running}
                             onClick={stop}
                             className="rounded-lg transition-all   hover:text-cyan-500 dark:hover:text-cyan-500 px-4 py-3 w-44 bg-white dark:bg-stone-900 dark:text-amber-100 flex shadow-md  disabled:opacity-60 disabled:pointer-events-none"
@@ -63,6 +65,7 @@ const Time = () => {
                     </div>
                     <div className="flex mx-auto space-x-2">
                         <button
+                            title="reset"
                             disabled={running || time === 0}
                             onClick={reset}
                             className="rounded-lg px-4 py-3 w-44 bg-white dark:bg-stone-900 dark:text-amber-100 flex transition-all hover:text-red-500 dark:hover:text-red-500 shadow-md  disabled:opacity-60 disabled:pointer-events-none"
