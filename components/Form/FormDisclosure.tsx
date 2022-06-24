@@ -13,7 +13,7 @@ const FormDisclosure = ({
         <Disclosure>
             {({ open }) => (
                 <>
-                    <Disclosure.Button className="flex w-full justify-between rounded-lg bg-amber-100 px-4 py-2 text-left text-sm font-medium text-amber-900 hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-opacity-75">
+                    <Disclosure.Button className="flex w-full justify-between rounded-lg bg-amber-100 dark:bg-amber-700/20 px-4 py-2 text-left text-sm font-medium text-amber-900 dark:text-amber-500 hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-opacity-75">
                         <span>{title}</span>
                         <ChevronUpIcon
                             className={`${
@@ -30,7 +30,7 @@ const FormDisclosure = ({
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                     >
-                        <Disclosure.Panel className="p-2 bg-amber-50 mt-1 rounded-lg">
+                        <Disclosure.Panel className="p-2 bg-amber-50 dark:bg-amber-700/10 mt-1 rounded-lg">
                             {children}
                         </Disclosure.Panel>
                     </Transition>

@@ -59,7 +59,7 @@ const BrewType = ({ control, setValue, getValues }: IBrewType) => {
                     }}
                 >
                     <div className="relative w-full">
-                        <Listbox.Button className="p-2 w-full relative rounded-lg border border-stone-200 bg-white transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500 flex ">
+                        <Listbox.Button className="p-2 w-full relative text-left dark:text-amber-100 rounded-lg border dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500">
                             <span className="block truncate">
                                 {getValues("coffeeType.name") ?? (
                                     <span className="text-stone-400">
@@ -69,7 +69,7 @@ const BrewType = ({ control, setValue, getValues }: IBrewType) => {
                             </span>
                             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <SelectorIcon
-                                    className="h-5 w-5 text-gray-400"
+                                    className="h-5 w-5 text-stone-400"
                                     aria-hidden="true"
                                 />
                             </span>
@@ -80,15 +80,15 @@ const BrewType = ({ control, setValue, getValues }: IBrewType) => {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                         >
-                            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-stone-900  py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {brewMethods.map((method) => (
                                     <Listbox.Option
                                         key={method.id}
                                         className={({ active }) =>
                                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                                 active
-                                                    ? "bg-amber-100 text-amber-900"
-                                                    : "text-gray-900"
+                                                    ? "bg-amber-100 text-amber-900 dark:bg-stone-800 dark:text-amber-300"
+                                                    : "text-stone-900 dark:text-amber-100"
                                             }`
                                         }
                                         value={method}
@@ -105,7 +105,7 @@ const BrewType = ({ control, setValue, getValues }: IBrewType) => {
                                                     {method.name}
                                                 </span>
                                                 {selected ? (
-                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600 dark:text-amber-300">
                                                         <CheckIcon
                                                             className="h-5 w-5"
                                                             aria-hidden="true"

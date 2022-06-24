@@ -2,8 +2,11 @@ import Link from "next/link";
 import * as React from "react";
 import { FeedbackFish } from "@feedback-fish/react";
 import Head from "next/head";
+import { MoonIcon, SunIcon } from "@heroicons/react/outline";
+import { useTheme } from "next-themes";
 
 const Menu = () => {
+    const { theme, setTheme } = useTheme();
     return (
         <>
             <Head>
@@ -32,11 +35,11 @@ const Menu = () => {
                 <link rel="manifest" href="/site.webmanifest" />
                 <title>shotclock</title>
             </Head>
-            <div className="fixed w-screen h-16 z-10 inset-0 bg-white/70 ">
+            <div className="fixed w-screen h-16 z-10 inset-0 bg-white/70 dark:bg-stone-900/70 dark:text-amber-100">
                 <div className="max-w-7xl mx-auto h-full flex py-2">
                     <Link href="/">
                         <a>
-                            <button className=" my-auto h-14 px-3 underline decoration-transparent hover:decoration-stone-900 flex ">
+                            <button className=" my-auto h-14 px-3 underline decoration-transparent hover:decoration-stone-900 dark:hover:decoration-amber-100  flex ">
                                 <svg
                                     className="h-8 w-auto  my-auto"
                                     width="118"
@@ -66,7 +69,7 @@ const Menu = () => {
                     </Link>
                     <Link href="/brews">
                         <a>
-                            <button className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
+                            <button className="underline decoration-transparent dark:hover:decoration-amber-100  hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
                                 {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
                                 <div className="text-lg my-auto ">my brews</div>
                             </button>
@@ -74,7 +77,7 @@ const Menu = () => {
                     </Link>
                     <Link href="/about">
                         <a>
-                            <button className="underline decoration-transparent hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
+                            <button className="underline decoration-transparent dark:hover:decoration-amber-100 hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
                                 {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
                                 <div className="text-lg my-auto ">about</div>
                             </button>
@@ -82,14 +85,27 @@ const Menu = () => {
                     </Link>
 
                     <div className="flex-grow"></div>
+                    <button
+                        name="toggle dark mode"
+                        onClick={() =>
+                            setTheme(theme === "dark" ? "light" : "dark")
+                        }
+                        className="hmy-auto  h-14 mx-3 group  "
+                    >
+                        {theme === "light" ? (
+                            <MoonIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                        ) : (
+                            <SunIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                        )}
+                    </button>
                     <FeedbackFish projectId="98bcbfde97c737">
-                        <button className="underline text-stone-600 decoration-transparent hover:decoration-stone-600 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
+                        <button className="underline text-stone-600 dark:text-amber-600 decoration-transparent hover:decoration-stone-600 dark:hover:decoration-amber-600 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
                             {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
                             <div className="text-lg my-auto ">feedback</div>
                         </button>
                     </FeedbackFish>
                     <a href="https://github.com/dylanbr0wn/shotclock">
-                        <button className="underline text-stone-600 decoration-transparent hover:decoration-stone-600 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 ">
+                        <button className="underline text-stone-600 dark:text-amber-600 decoration-transparent hover:decoration-stone-600 transition-all my-auto dark:hover:decoration-amber-600 h-14 px-3   flex  disabled:opacity-60 ">
                             {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
                             <div className="text-lg my-auto ">github</div>
                         </button>

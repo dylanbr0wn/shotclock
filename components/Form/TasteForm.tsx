@@ -12,7 +12,23 @@ import toast from "react-hot-toast";
 import useBrews from "../../utils/hooks/useBrew";
 import { Brew, zBrew } from "../../utils/types";
 import splitbee from "@splitbee/web";
-const notify = () => toast.success("Saved your brew ☕️");
+import DefaultInput from "./DefaultInput";
+import { useTheme } from "next-themes";
+
+const notify = (dark: boolean) =>
+    toast.success(
+        "Saved your brew ☕️",
+        dark
+            ? {
+                  icon: "👏",
+                  style: {
+                      borderRadius: "10px",
+                      background: "#333",
+                      color: "#fff",
+                  },
+              }
+            : {}
+    );
 const notifyError = () => toast.error("Uh oh... soemthing broke 😬");
 
 const TasteForm = ({
@@ -22,6 +38,7 @@ const TasteForm = ({
     closeModal: () => void;
     defaultForm?: Brew | undefined;
 }) => {
+    const { theme } = useTheme();
     const { addBrew } = useBrews();
     const { time } = useStore((state) => ({ time: state.time }), shallow);
 
@@ -50,7 +67,7 @@ const TasteForm = ({
         if (!isValid) return;
         try {
             addBrew({ ...data, id: cuid(), created: new Date().toISOString() });
-            notify();
+            notify(theme === "dark");
             splitbee.track("Brew made");
             closeModal();
         } catch (e) {
@@ -63,31 +80,28 @@ const TasteForm = ({
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* <h1 className="text-xl font-bold">Save your coffee</h1> */}
                 <div className="flex space-x-3">
-                    <label className="flex flex-col w-2/3">
-                        <div className=" text-sm text-stone-500">Name:</div>
-                        <input
-                            placeholder="My best brew ever!!"
-                            className="p-2 rounded-lg border border-stone-200 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
-                            {...register("name", { required: true })}
-                        />
-                    </label>
+                    <DefaultInput
+                        labelName="name"
+                        title="Name:"
+                        placeholder="My best brew ever!!"
+                        width="w-2/3"
+                        {...register("name", { required: true })}
+                    />
                 </div>
                 <div className="my-3">
                     <FormDisclosure title="Coffee Details">
                         <div className="flex flex-col space-y-3">
                             <div className="flex space-x-3">
-                                <label className="flex flex-col w-full">
-                                    <div className=" text-sm text-stone-500">
-                                        Coffee Name:
-                                    </div>
-                                    <input
-                                        placeholder="Kickass Coffee Beans"
-                                        className="p-2 rounded-lg border border-stone-200 placeholder:text-stone-400   transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
-                                        {...register("coffeeName")}
-                                    />
-                                </label>
+                                <DefaultInput
+                                    labelName="coffeeName"
+                                    title="Coffee Name:"
+                                    placeholder="Kickass Coffee Beans"
+                                    width="w-full"
+                                    {...register("coffeeName")}
+                                />
+
                                 <label className="flex flex-col w-2/3">
-                                    <div className=" text-sm text-stone-500">
+                                    <div className=" text-sm text-stone-500 dark:text-amber-100/60">
                                         Coffee Roast:
                                     </div>
                                     <Roast
@@ -104,17 +118,7 @@ const TasteForm = ({
                         <div className="flex flex-col space-y-3 w-full">
                             <div className="flex space-x-3">
                                 <label className="flex flex-col w-full">
-                                    <div className=" text-sm text-stone-500">
-                                        Coffee Name:
-                                    </div>
-                                    <input
-                                        placeholder="Kickass Coffee Beans"
-                                        className="p-2 rounded-lg border border-stone-200 placeholder:text-stone-400   transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
-                                        {...register("coffeeName")}
-                                    />
-                                </label>
-                                <label className="flex flex-col w-full">
-                                    <div className=" text-sm text-stone-500">
+                                    <div className=" text-sm text-stone-500 dark:text-amber-100/60">
                                         Brew Method:
                                     </div>
                                     <BrewType
@@ -123,51 +127,44 @@ const TasteForm = ({
                                         getValues={getValues}
                                     />
                                 </label>
+                                <DefaultInput
+                                    labelName="grindSetting"
+                                    title="Grind Setting:"
+                                    placeholder="9 and 3/4"
+                                    width="w-full"
+                                    {...register("grindSetting")}
+                                />
+                            </div>
+                            <div className="flex space-x-3 w-full">
+                                <DefaultInput
+                                    labelName="coffeeIn"
+                                    title="Coffee In (weight):"
+                                    placeholder="18"
+                                    width="w-1/3"
+                                    {...register("coffeeIn")}
+                                />
+                                <DefaultInput
+                                    number
+                                    labelName="coffeeIn"
+                                    title="Coffee In (weight):"
+                                    placeholder="18"
+                                    width="w-1/3"
+                                    {...register("coffeeIn")}
+                                />
+                                {/* <DefaultInput
+                                    number
+                                    labelName="coffeeOut"
+                                    title="Coffee Out (weight):"
+                                    placeholder="35"
+                                    width="w-1/3"
+                                    {...register("coffeeOut", {
+                                        valueAsNumber: true,
+                                    })}
+                                /> */}
                             </div>
                             <div className="flex space-x-3 w-full">
                                 <label className="flex flex-col w-1/3">
-                                    <div className=" text-sm text-stone-500">
-                                        Grind Setting:
-                                    </div>
-                                    <input
-                                        placeholder="8"
-                                        type="number"
-                                        className="p-2 w-full rounded-lg border border-stone-200 placeholder:text-stone-400   transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500 focus:ring-0 focus:outline-offset-0"
-                                        {...register("grindSetting", {
-                                            valueAsNumber: true,
-                                        })}
-                                    />
-                                </label>
-                                <label className="flex flex-col w-1/3">
-                                    <div className=" text-sm text-stone-500">
-                                        Coffee In (weight):
-                                    </div>
-                                    <input
-                                        placeholder="18"
-                                        type="number"
-                                        className="p-2 w-full  rounded-lg border border-stone-200 placeholder:text-stone-400   transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500 focus:ring-0 focus:outline-offset-0"
-                                        {...register("coffeeIn", {
-                                            valueAsNumber: true,
-                                        })}
-                                    />
-                                </label>
-                                <label className="flex flex-col w-1/3">
-                                    <div className=" text-sm text-stone-500">
-                                        Coffee Out (weight):
-                                    </div>
-                                    <input
-                                        placeholder="35"
-                                        type="number"
-                                        className="p-2 w-full rounded-lg border border-stone-200 placeholder:text-stone-400   transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500 focus:ring-0 focus:outline-offset-0"
-                                        {...register("coffeeOut", {
-                                            valueAsNumber: true,
-                                        })}
-                                    />
-                                </label>
-                            </div>
-                            <div className="flex space-x-3 w-full">
-                                <label className="flex flex-col w-1/3">
-                                    <div className=" text-sm text-stone-500">
+                                    <div className=" text-sm text-stone-500 dark:text-amber-100/60">
                                         Time(from timer):
                                     </div>
                                     <input
@@ -176,7 +173,7 @@ const TasteForm = ({
                                     />
                                     <input
                                         disabled
-                                        className="p-2 rounded-lg border border-stone-200 placeholder:text-stone-400   transition-colors ring-0 outline-none focus:outline "
+                                        className="p-2 dark:text-amber-300 w-full rounded-lg border focus:ring-0 dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
                                         value={`${(
                                             "0" + Math.floor((time / 1000) % 60)
                                         ).slice(-2)}:${(
@@ -191,15 +188,19 @@ const TasteForm = ({
                 </div>
                 <div className=" flex flex-col my-3 space-y-3">
                     <label className="flex flex-col ">
-                        <div className=" text-sm text-stone-500">Rating:</div>
+                        <div className=" text-sm text-stone-500 dark:text-amber-100/60">
+                            Rating:
+                        </div>
                         <Rating getValues={getValues} setValue={setValue} />
                     </label>
                     <label className="flex flex-col w-2/3">
-                        <div className=" text-sm text-stone-500">Comments:</div>
+                        <div className=" text-sm text-stone-500 dark:text-amber-100/60">
+                            Comments:
+                        </div>
                         <textarea
                             rows={4}
                             placeholder={`Aroma, Sweetness, Bitterness, Taste, Body, Aftertaste`}
-                            className="p-2 w-full rounded-lg border border-stone-200 placeholder:text-stone-400   transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500 focus:ring-0 focus:outline-offset-0"
+                            className="p-2 dark:text-amber-300 w-full rounded-lg border focus:ring-0 dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
                             {...register("comments")}
                         />
                     </label>
@@ -209,7 +210,7 @@ const TasteForm = ({
                     <button
                         data-splitbee-event="Brews Stored"
                         type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-amber-100 px-4 py-2  font-medium text-amber-900 hover:bg-amber-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 transition-colors"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-amber-100 dark:bg-amber-600 dark:text-stone-900 px-4 py-2  font-medium text-amber-900 hover:bg-amber-200 dark:hover:bg-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 transition-colors"
                     >
                         Save this sucker!
                     </button>

@@ -4,9 +4,21 @@ import * as React from "react";
 import { IZRoast, Brew } from "../../utils/types";
 
 const roasts = [
-    { id: "light", name: "Light", bg: "bg-amber-500" },
-    { id: "medium", name: "Medium", bg: "bg-amber-700" },
-    { id: "dark", name: "Dark", bg: "bg-amber-900" },
+    {
+        id: "light",
+        name: "Light",
+        bg: "bg-amber-500 text-white dark:text-stone-900",
+    },
+    {
+        id: "medium",
+        name: "Medium",
+        bg: "bg-amber-700 text-white ",
+    },
+    {
+        id: "dark",
+        name: "Dark",
+        bg: "bg-amber-900 text-white ",
+    },
 ];
 
 interface IRoast {
@@ -45,12 +57,12 @@ const Roast = ({ control, setValue }: IRoast) => {
                                             ? "ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-amber-300"
                                             : ""
                                     }
-                                                                                    ${
-                                                                                        checked
-                                                                                            ? `${plan.bg} text-white`
-                                                                                            : "bg-white"
-                                                                                    }
-                                                                                    relative border border-stone-200 flex cursor-pointer transition-colors rounded-lg px-3 py-2 focus:outline-none`
+                                    ${
+                                        checked
+                                            ? `${plan.bg}`
+                                            : "bg-white dark:bg-stone-900 dark:text-amber-100"
+                                    }
+                                    relative  border  border-stone-200 dark:border-stone-600 placeholder:text-stone-400  ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500 flex cursor-pointer transition-colors rounded-lg px-3 py-2 focus:outline-none`
                                 }
                             >
                                 {({ active, checked }) => (
@@ -60,11 +72,7 @@ const Roast = ({ control, setValue }: IRoast) => {
                                                 <div className="">
                                                     <RadioGroup.Label
                                                         as="p"
-                                                        className={`font-medium  ${
-                                                            checked
-                                                                ? "text-white"
-                                                                : "text-stone-600"
-                                                        }`}
+                                                        className={`font-medium  `}
                                                     >
                                                         {plan.name}
                                                     </RadioGroup.Label>

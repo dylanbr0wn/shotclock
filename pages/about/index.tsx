@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { NotionRenderer } from "react-notion";
 import "react-notion/src/styles.css";
+import AppWrapper from "../../components/AppWrapper";
 
 const getAbout = async () => {
     return (
@@ -14,9 +15,11 @@ const About = () => {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <div className="max-w-3xl mx-auto mt-10 text-stone-900">
-            <NotionRenderer blockMap={data.body} />
-        </div>
+        <AppWrapper>
+            <div className="max-w-3xl mx-auto pt-10">
+                <NotionRenderer blockMap={data.body} />
+            </div>
+        </AppWrapper>
     );
 };
 export default About;

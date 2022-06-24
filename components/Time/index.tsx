@@ -34,18 +34,20 @@ const Time = () => {
             <span className="absolute transform -translate-x-[50%] -translate-y-[50%] top-[50%] left-[50%] inline-block text-center">
                 <div
                     className={`text-7xl ${
-                        percent < 75 ? "text-stone-800" : "text-amber-200"
+                        percent < 75
+                            ? "text-stone-800 dark:text-amber-200"
+                            : "text-amber-200 dark:text-stone-800"
                     } font-mono font-semibold transition-colors  duration-1000`}
                 >
                     {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
                     {("0" + (Math.floor(time / 10) % 100)).slice(-2)}
                 </div>
-                <div className="flex flex-col space-y-2 mt-8 bg-amber-700/10 p-2 rounded-lg">
+                <div className="flex flex-col space-y-2 mt-8 bg-amber-700/10 dark:bg-amber-100/70 p-2 rounded-lg">
                     <div className="flex mx-auto space-x-2">
                         <button
                             disabled={running}
                             onClick={start}
-                            className="rounded-lg px-4 py-3 bg-white flex transition-all  duration-300 hover:text-green-500 shadow-md w-44 disabled:opacity-60  disabled:pointer-events-none"
+                            className="rounded-lg px-4 py-3 bg-white dark:bg-stone-900 dark:text-amber-100  flex transition-all  duration-300 hover:text-green-500 dark:hover:text-green-500 shadow-md w-44 disabled:opacity-60  disabled:pointer-events-none"
                         >
                             <PlayIcon className="h-8 w-8 mx-4" />
                             <div className="text-2xl my-auto ">Start</div>
@@ -53,7 +55,7 @@ const Time = () => {
                         <button
                             disabled={!running}
                             onClick={stop}
-                            className="rounded-lg transition-all   hover:text-cyan-500 px-4 py-3 w-44 bg-white flex shadow-md  disabled:opacity-60 disabled:pointer-events-none"
+                            className="rounded-lg transition-all   hover:text-cyan-500 dark:hover:text-cyan-500 px-4 py-3 w-44 bg-white dark:bg-stone-900 dark:text-amber-100 flex shadow-md  disabled:opacity-60 disabled:pointer-events-none"
                         >
                             <PauseIcon className="h-8 w-8 mx-4" />
                             <div className="text-2xl my-auto ">Pause</div>
@@ -63,7 +65,7 @@ const Time = () => {
                         <button
                             disabled={running || time === 0}
                             onClick={reset}
-                            className="rounded-lg px-4 py-3 w-44 bg-white flex transition-all hover:text-red-500 shadow-md  disabled:opacity-60 disabled:pointer-events-none"
+                            className="rounded-lg px-4 py-3 w-44 bg-white dark:bg-stone-900 dark:text-amber-100 flex transition-all hover:text-red-500 dark:hover:text-red-500 shadow-md  disabled:opacity-60 disabled:pointer-events-none"
                         >
                             <RefreshIcon className="h-8 w-8 mx-4" />
                             <div className="text-2xl my-auto ">Reset</div>
@@ -74,7 +76,7 @@ const Time = () => {
                 <div
                     className={`${
                         time > 0 && "opacity-0 pointer-events-none"
-                    } transition-opacity duration-1000 text-stone-900 mt-8 font-extrabold text-2xl text-center`}
+                    } transition-opacity duration-1000 text-stone-900 dark:text-amber-100 mt-8 font-extrabold text-2xl text-center`}
                 >
                     Target Brew Time
                 </div>
@@ -83,7 +85,7 @@ const Time = () => {
                         style={{ opacity }}
                         className={`text-3xl ${
                             percent > 0 && "pointer-events-none"
-                        } flex flex-col  transition-colors bg-amber-700/10 py-12 px-2 rounded-lg mx-auto`}
+                        } flex flex-col  transition-colors bg-amber-700/10 dark:bg-amber-100/70 py-12 px-2 rounded-lg mx-auto`}
                         // onMouseLeave={() => setOpen(false)}
                     >
                         <div className="my-auto">

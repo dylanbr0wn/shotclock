@@ -26,7 +26,7 @@ const Progress = () => {
 
     return (
         <>
-            <div className="absolute inset-0 pointer-events-none w-screen h-screen  overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none w-screen h-screen bg-white dark:bg-stone-900 overflow-hidden">
                 <div className="flex flex-col h-screen">
                     <svg
                         // style={{

@@ -7,6 +7,7 @@ import TasteForm from "../Form/TasteForm";
 import useBrews from "../../utils/hooks/useBrew";
 import { Brew } from "../../utils/types";
 import splitbee from "@splitbee/web";
+import { useTheme } from "next-themes";
 
 const CustTable = () => {
     const loadBrew = (brew: Brew) => {
@@ -14,6 +15,8 @@ const CustTable = () => {
         openModal();
         console.log(brew);
     };
+
+    const { theme } = useTheme();
 
     const [selectedBrew, setSelectedBrew] = React.useState<Brew>();
 
@@ -38,33 +41,33 @@ const CustTable = () => {
         <>
             <table className="table-auto max-h-full min-w-full border-separate border-spacing-0">
                 <thead className="">
-                    <tr>
-                        <th className="sticky top-0 border-b border-amber-300 bg-amber-100 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-amber-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 mx-0">
+                    <tr className="text-amber-900 dark:text-amber-100">
+                        <th className="sticky top-0 border-b border-amber-300 dark:bg-amber-900/30  bg-amber-100 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold  backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 mx-0">
                             Name
                         </th>
-                        <th className="sticky top-0 hidden border-b border-amber-300 bg-amber-100 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-amber-900 backdrop-blur backdrop-filter lg:table-cell  mx-0">
+                        <th className="sticky top-0 hidden border-amber-300  border-b dark:bg-amber-900/30  bg-amber-100 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold  backdrop-blur backdrop-filter lg:table-cell  mx-0">
                             Rating
                         </th>
-                        <th className="sticky top-0 border-b border-amber-300 bg-amber-100 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-amber-900 backdrop-blur backdrop-filter mx-0">
+                        <th className="sticky top-0 border-amber-300  border-b dark:bg-amber-900/30  bg-amber-100 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold backdrop-blur backdrop-filter mx-0">
                             Created On
                         </th>
                     </tr>
                 </thead>
-                <tbody className="">
+                <tbody className="text-amber-100">
                     {brews.map((brew) => {
                         return (
                             <tr
                                 onClick={() => loadBrew(brew)}
-                                className="odd:bg-amber-50 cursor-pointer"
+                                className="odd:bg-amber-50 dark:odd:bg-stone-800 cursor-pointer"
                                 key={brew.id}
                             >
-                                <td className="whitespace-nowrap border-b border-amber-200 py-4 pl-4 pr-3 text-sm font-medium text-stone-900 sm:pl-6 lg:pl-8">
+                                <td className="whitespace-nowrap border-b border-amber-200 dark:border-stone-700 py-4 pl-4 pr-3 text-sm font-medium text-stone-900 dark:text-amber-100 sm:pl-6 lg:pl-8">
                                     {brew.name ?? ""}
                                 </td>
-                                <td className="whitespace-nowrap border-b border-amber-200 px-3 py-4 text-sm text-stone-500 hidden lg:table-cell">
+                                <td className="whitespace-nowrap border-b border-amber-200 dark:text-amber-100 dark:border-stone-700 px-3 py-4 text-sm text-stone-500 hidden lg:table-cell">
                                     {brew.rating ?? "N/A "}
                                 </td>
-                                <td className="whitespace-nowrap border-b border-amber-200 px-3 py-4 text-sm text-stone-500">
+                                <td className="whitespace-nowrap border-b border-amber-200 dark:text-amber-100 dark:border-stone-700 px-3 py-4 text-sm text-stone-500">
                                     {new Date(
                                         brew.created ?? ""
                                     ).toLocaleDateString()}
@@ -82,7 +85,11 @@ const CustTable = () => {
                 </tbody>
             </table>
             <Transition appear show={isOpen} as={React.Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                <Dialog
+                    as="div"
+                    className={`${theme} relative z-10`}
+                    onClose={closeModal}
+                >
                     <Transition.Child
                         as={React.Fragment}
                         enter="ease-out duration-300"
@@ -95,7 +102,7 @@ const CustTable = () => {
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
                     </Transition.Child>
 
-                    <div className="fixed inset-0 overflow-y-auto">
+                    <div className={` fixed inset-0 overflow-y-auto`}>
                         <div className="flex min-h-full items-center justify-center p-4 text-center">
                             <Transition.Child
                                 as={React.Fragment}
@@ -106,10 +113,10 @@ const CustTable = () => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white dark:bg-stone-800 p-6 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900 flex"
+                                        className="text-lg font-medium leading-6 text-gray-900 dark:text-amber-100 flex"
                                     >
                                         <div className="flex-grow">
                                             Your Brew
@@ -122,7 +129,7 @@ const CustTable = () => {
                                                 );
                                                 pourOneOut(selectedBrew);
                                             }}
-                                            className="inline-flex text-sm justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 transition-colors"
+                                            className="inline-flex text-sm justify-center rounded-md border border-transparent bg-red-100 dark:bg-red-800/40 px-4 py-2 font-medium text-red-900 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-700/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 transition-colors"
                                         >
                                             <TrashIcon className="h-5 w-5 my-auto mr-3" />
                                             <div>Pour out</div>

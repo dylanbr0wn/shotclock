@@ -4,6 +4,7 @@ import shallow from "zustand/shallow";
 import useStore from "../../utils/zustand";
 import * as React from "react";
 import TasteForm from "../Form/TasteForm";
+import { useTheme } from "next-themes";
 
 const SaveButton = () => {
     const { time, running } = useStore(
@@ -14,19 +15,24 @@ const SaveButton = () => {
 
     const closeModal = () => setIsOpen(false);
     const openModal = () => setIsOpen(true);
+    const { theme } = useTheme();
 
     return (
         <>
             <button
                 onClick={openModal}
                 disabled={time === 0 || running}
-                className="hover:text-amber-600 transition-all  rounded-lg px-4 py-3 w-44 bg-white flex  shadow-md disabled:opacity-60 disabled:pointer-events-none"
+                className="hover:text-amber-600 dark:hover:text-amber-600  transition-all  rounded-lg px-4 py-3 w-44 bg-white dark:bg-stone-900 dark:text-amber-100 flex  shadow-md disabled:opacity-60 disabled:pointer-events-none"
             >
                 <BookmarkIcon className="h-8 w-8 mx-4" />
                 <div className="text-2xl my-auto ">Save</div>
             </button>
             <Transition appear show={isOpen} as={React.Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                <Dialog
+                    as="div"
+                    className={`relative z-10 ${theme}`}
+                    onClose={closeModal}
+                >
                     <Transition.Child
                         as={React.Fragment}
                         enter="ease-out duration-300"
@@ -50,10 +56,10 @@ const SaveButton = () => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white dark:bg-stone-800 p-6 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900"
+                                        className="text-lg font-medium leading-6 text-gray-900 dark:text-amber-100"
                                     >
                                         Your Brew
                                     </Dialog.Title>

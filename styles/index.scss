@@ -28,3 +28,15 @@ input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
+
+:root {
+    /* Your default theme */
+    --background: white;
+    --foreground: #1c1917;
+    background-color: var(--background);
+}
+
+[data-theme="dark"] {
+    --background: #1c1917;
+    --foreground: white;
+}

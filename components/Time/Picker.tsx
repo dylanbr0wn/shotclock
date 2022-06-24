@@ -2,7 +2,6 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import * as React from "react";
 import shallow from "zustand/shallow";
 import useLocalStorage from "../../utils/hooks/useLocalStorage";
-import useLongPress from "../../utils/hooks/useLongPress";
 import useStore from "../../utils/zustand";
 
 const Picker = () => {
@@ -46,7 +45,7 @@ const Picker = () => {
     return (
         <>
             <div
-                className={`flex justify-center bg-white ${
+                className={`flex justify-center bg-white dark:bg-stone-900 dark:text-amber-100  ${
                     time === 0 ? "pointer-events-auto" : "pointer-events-none"
                 } transition-colors mx-auto shadow-md py-3 px-4 align-middle content-center  rounded-lg border-0 `}
             >
@@ -64,9 +63,9 @@ const Picker = () => {
                         onClick={() => {
                             setGoal(goal + 60000);
                         }}
-                        className={`rounded-lg opacity-100 py-1 px-3 absolute transform -translate-y-[3.25rem]  inset-x-0 transition-opacity mx-auto bg-white shadow-md disabled:opacity-50`}
+                        className={`rounded-lg opacity-100 py-1 px-3 absolute transform -translate-y-[3.25rem]  inset-x-0 transition-opacity mx-auto bg-white text-stone-900 dark:bg-stone-900 dark:text-amber-100  shadow-md disabled:opacity-50`}
                     >
-                        <ChevronUpIcon className="h-6 w-6 m-auto text-stone-900" />
+                        <ChevronUpIcon className="h-6 w-6 m-auto " />
                     </button>
                     <input
                         ref={minuteRef}
@@ -100,9 +99,9 @@ const Picker = () => {
                         // }}
                         disabled={getMinutes() < 1}
                         onClick={() => setGoal(goal - 60000)}
-                        className={`rounded-lg py-1 px-3 transform absolute shadow-md translate-y-16  inset-x-0 transition-opacity bg-white mx-auto disabled:opacity-50`}
+                        className={`rounded-lg py-1 px-3 transform absolute shadow-md translate-y-16  inset-x-0 transition-opacity bg-white dark:bg-stone-900 dark:text-amber-100 text-stone-900 mx-auto disabled:opacity-50`}
                     >
-                        <ChevronDownIcon className="h-6 w-6 m-auto text-stone-900" />
+                        <ChevronDownIcon className="h-6 w-6 m-auto " />
                     </button>
                 </div>
                 <div
@@ -123,9 +122,9 @@ const Picker = () => {
                         // }}
                         disabled={getSeconds() > 58}
                         onClick={() => setGoal(goal + 1000)}
-                        className={`rounded-lg py-1 px-3 absolute transform shadow-md -translate-y-[3.25rem] inset-x-0 transition-opacity bg-white mx-auto disabled:opacity-50`}
+                        className={`rounded-lg py-1 px-3 absolute transform shadow-md -translate-y-[3.25rem] inset-x-0 transition-opacity bg-white dark:bg-stone-900 dark:text-amber-100 text-stone-900 mx-auto disabled:opacity-50`}
                     >
-                        <ChevronUpIcon className="h-6 w-6 m-auto text-stone-900" />
+                        <ChevronUpIcon className="h-6 w-6 m-auto " />
                     </button>
                     <input
                         ref={secondRef}
@@ -181,9 +180,9 @@ const Picker = () => {
                         // }}
                         disabled={getSeconds() < 2}
                         onClick={() => setGoal(goal - 1000)}
-                        className={`rounded-lg py-1 px-3 transform absolute shadow-md translate-y-16 inset-x-0 transition-opacity bg-white mx-auto disabled:opacity-50`}
+                        className={`rounded-lg py-1 px-3 transform absolute shadow-md translate-y-16 inset-x-0 transition-opacity bg-white dark:bg-stone-900 dark:text-amber-100 text-stone-900 mx-auto disabled:opacity-50`}
                     >
-                        <ChevronDownIcon className="h-6 w-6 m-auto text-stone-900" />
+                        <ChevronDownIcon className="h-6 w-6 m-auto " />
                     </button>
                 </div>
             </div>
