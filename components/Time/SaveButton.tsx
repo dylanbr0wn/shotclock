@@ -6,7 +6,10 @@ import * as React from "react";
 import TasteForm from "../Form/TasteForm";
 
 const SaveButton = () => {
-    const { time } = useStore((state) => ({ time: state.time }), shallow);
+    const { time, running } = useStore(
+        (state) => ({ time: state.time, running: state.running }),
+        shallow
+    );
     const [isOpen, setIsOpen] = React.useState(false);
 
     const closeModal = () => setIsOpen(false);
@@ -16,7 +19,7 @@ const SaveButton = () => {
         <>
             <button
                 onClick={openModal}
-                disabled={time === 0}
+                disabled={time === 0 || running}
                 className="hover:text-amber-600 transition-all  rounded-lg px-4 py-3 w-44 bg-white flex  shadow-md disabled:opacity-60 disabled:pointer-events-none"
             >
                 <BookmarkIcon className="h-8 w-8 mx-4" />
