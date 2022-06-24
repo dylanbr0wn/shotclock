@@ -73,7 +73,7 @@ const Time = () => {
                 </div>
                 <div
                     className={`${
-                        time > 0 && "opacity-0"
+                        time > 0 && "opacity-0 pointer-events-none"
                     } transition-opacity duration-1000 text-stone-900 mt-8 font-extrabold text-2xl text-center`}
                 >
                     Target Brew Time

@@ -47,7 +47,7 @@ const Picker = () => {
         <>
             <div
                 className={`flex justify-center bg-white ${
-                    time === 0 && "pointer-events-auto"
+                    time === 0 ? "pointer-events-auto" : "pointer-events-none"
                 } transition-colors mx-auto shadow-md py-3 px-4 align-middle content-center  rounded-lg border-0 `}
             >
                 <div className="relative ">
