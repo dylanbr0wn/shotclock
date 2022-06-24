@@ -32,6 +32,10 @@ const Menu = () => {
                     sizes="16x16"
                     href="/favicon-16x16.png"
                 />
+                <meta
+                    name="description"
+                    content="Time, track, and log your coffee journey."
+                />
                 <link rel="manifest" href="/site.webmanifest" />
                 <title>shotclock</title>
             </Head>
