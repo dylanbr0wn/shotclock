@@ -6,6 +6,7 @@ import { TrashIcon } from "@heroicons/react/outline";
 import TasteForm from "../Form/TasteForm";
 import useBrews from "../../utils/hooks/useBrew";
 import { Brew } from "../../utils/types";
+import splitbee from "@splitbee/web";
 
 const CustTable = () => {
     const loadBrew = (brew: Brew) => {
@@ -115,9 +116,12 @@ const CustTable = () => {
                                         </div>
 
                                         <button
-                                            onClick={() =>
-                                                pourOneOut(selectedBrew)
-                                            }
+                                            onClick={() => {
+                                                splitbee.track(
+                                                    "Brews poured Out"
+                                                );
+                                                pourOneOut(selectedBrew);
+                                            }}
                                             className="inline-flex text-sm justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 transition-colors"
                                         >
                                             <TrashIcon className="h-5 w-5 my-auto mr-3" />

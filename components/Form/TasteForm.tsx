@@ -11,6 +11,7 @@ import cuid from "cuid";
 import toast from "react-hot-toast";
 import useBrews from "../../utils/hooks/useBrew";
 import { Brew, zBrew } from "../../utils/types";
+import splitbee from "@splitbee/web";
 const notify = () => toast.success("Saved your brew ☕️");
 const notifyError = () => toast.error("Uh oh... soemthing broke 😬");
 
@@ -50,6 +51,7 @@ const TasteForm = ({
         try {
             addBrew({ ...data, id: cuid(), created: new Date().toISOString() });
             notify();
+            splitbee.track("Brew made");
             closeModal();
         } catch (e) {
             notifyError();

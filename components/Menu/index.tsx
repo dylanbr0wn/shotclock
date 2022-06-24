@@ -2,7 +2,6 @@ import Link from "next/link";
 import * as React from "react";
 import { FeedbackFish } from "@feedback-fish/react";
 import Head from "next/head";
-import Script from "next/script";
 
 const Menu = () => {
     return (
@@ -32,7 +31,6 @@ const Menu = () => {
                 />
                 <link rel="manifest" href="/site.webmanifest" />
                 <title>shotclock</title>
-                <Script async data-api="/_hive" src="/bee.js"></Script>
             </Head>
             <div className="fixed w-screen h-16 z-10 inset-0 bg-white/70 ">
                 <div className="max-w-7xl mx-auto h-full flex py-2">
