@@ -68,5 +68,5 @@
 }
 
 .maxFillTop {
-    top: calc(15vh - env(safe-area-inset-bottom));
+    bottom: calc(80vh + env(safe-area-inset-bottom));
 }

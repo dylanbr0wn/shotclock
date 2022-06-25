@@ -85,7 +85,7 @@ const Progress = () => {
                     </svg>
                     <a.div
                         style={{ height }}
-                        className="flex bg-amber-800 origin-bottom flex-shrink"
+                        className="flex bg-amber-800 transform scale-80 md:scale-100 origin-bottom flex-shrink"
                     />
                     {/* <div
                         className={`flex  bg-amber-800 origin-bottom flex-shrink ${styles.tabExtra}`}
