@@ -59,7 +59,7 @@ const BrewType = ({ control, setValue, getValues }: IBrewType) => {
                     }}
                 >
                     <div className="relative w-full">
-                        <Listbox.Button className="p-2 w-full relative text-left dark:text-amber-100 rounded-lg border dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500">
+                        <Listbox.Button className="p-2 w-full relative text-left dark:text-amber-100 rounded-lg border dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 bg-white outline-none focus:ring focus:ring-amber-500 ring-offset-0 focus:border-amber-500 hover:border-amber-500">
                             <span className="block truncate">
                                 {getValues("coffeeType.name") ?? (
                                     <span className="text-stone-400">

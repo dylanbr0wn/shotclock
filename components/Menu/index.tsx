@@ -52,7 +52,7 @@ const Menu = () => {
                         <a>
                             <button
                                 title="shotclock"
-                                className=" my-auto h-14 px-3 underline decoration-transparent hover:decoration-stone-900 dark:hover:decoration-amber-100  flex "
+                                className=" my-auto h-14 px-3 flex group "
                             >
                                 <svg
                                     className="h-8 w-auto  my-auto"
@@ -75,7 +75,7 @@ const Menu = () => {
                                         fill="#78350F"
                                     />
                                 </svg>
-                                <div className="text-lg ml-3 my-auto font-extrabold">
+                                <div className="text-lg ml-3 my-auto font-extrabold underline decoration-transparent hover:decoration-stone-900 dark:hover:decoration-amber-100  ">
                                     shotclock
                                 </div>
                             </button>
@@ -85,10 +85,12 @@ const Menu = () => {
                         <a>
                             <button
                                 title="my brews"
-                                className="underline decoration-transparent dark:hover:decoration-amber-100  hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
+                                className=" my-auto  h-14 px-3 group flex transition-colors "
                             >
                                 {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
-                                <div className="text-lg my-auto ">my brews</div>
+                                <div className="text-lg my-auto underline decoration-transparent dark:group-hover:decoration-amber-100  hover:decoration-stone-900">
+                                    my brews
+                                </div>
                             </button>
                         </a>
                     </Link>
@@ -96,10 +98,12 @@ const Menu = () => {
                         <a>
                             <button
                                 title="about"
-                                className="underline decoration-transparent dark:hover:decoration-amber-100 hover:decoration-stone-900 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
+                                className="transition-colors my-auto  h-14 px-3 group  flex"
                             >
                                 {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
-                                <div className="text-lg my-auto ">about</div>
+                                <div className="text-lg my-auto underline decoration-transparent dark:hover:decoration-amber-100 hover:decoration-stone-900 ">
+                                    about
+                                </div>
                             </button>
                         </a>
                     </Link>
@@ -109,12 +113,12 @@ const Menu = () => {
                         title="toggle volume"
                         name="toggle volume"
                         onClick={() => setVolumeOn(!volumeOn)}
-                        className="hmy-auto  h-14 mx-3 group  "
+                        className="my-auto  h-14 mx-3 group pointer-events-auto border-b border-white  dark:border-stone-900 hover:border-transparent dark:hover:border-transparent " //this bs is for safari
                     >
                         {!volumeOn ? (
-                            <VolumeOffIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                            <VolumeOffIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600 pointer-events-none" />
                         ) : (
-                            <VolumeUpIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                            <VolumeUpIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600 pointer-events-none" />
                         )}
                     </button>
                     <button
@@ -123,30 +127,34 @@ const Menu = () => {
                         onClick={() =>
                             setTheme(theme === "dark" ? "light" : "dark")
                         }
-                        className="hmy-auto  h-14 mx-3 group  "
+                        className="my-auto  h-14 mx-3 group pointer-events-auto border-b border-white dark:border-stone-900 hover:border-transparent dark:hover:border-transparent"
                     >
                         {theme === "light" ? (
-                            <MoonIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                            <MoonIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600 pointer-events-none" />
                         ) : (
-                            <SunIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                            <SunIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600 pointer-events-none " />
                         )}
                     </button>
                     <FeedbackFish projectId="98bcbfde97c737">
                         <button
                             title="feedback"
-                            className="underline text-stone-600 dark:text-amber-600 decoration-transparent hover:decoration-stone-600 dark:hover:decoration-amber-600 transition-all my-auto  h-14 px-3   flex  disabled:opacity-60 "
+                            className=" transition-colors group my-auto  h-14 px-3   flex "
                         >
                             {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
-                            <div className="text-lg my-auto ">feedback</div>
+                            <div className="text-lg my-auto underline text-stone-600 dark:text-amber-600 decoration-transparent hover:decoration-stone-600 dark:hover:decoration-amber-600">
+                                feedback
+                            </div>
                         </button>
                     </FeedbackFish>
                     <a href="https://github.com/dylanbr0wn/shotclock">
                         <button
                             title="see project code"
-                            className="underline text-stone-600 dark:text-amber-600 decoration-transparent hover:decoration-stone-600 transition-all my-auto dark:hover:decoration-amber-600 h-14 px-3   flex  disabled:opacity-60 "
+                            className=" transition-colors group my-auto h-14 px-3   flex  disabled:opacity-60 "
                         >
                             {/* <HomeIcon className="h-6 w-6 mr-3 my-auto" /> */}
-                            <div className="text-lg my-auto ">github</div>
+                            <div className="text-lg my-auto underline text-stone-600 dark:text-amber-600 decoration-transparent hover:decoration-stone-600 dark:hover:decoration-amber-600">
+                                github
+                            </div>
                         </button>
                     </a>
                 </div>

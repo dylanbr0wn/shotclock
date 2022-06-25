@@ -22,7 +22,7 @@ const DefaultInput = React.forwardRef<
                 type={"text"}
                 ref={ref!}
                 placeholder={placeholder}
-                className="p-2 dark:text-amber-100 w-full rounded-lg border focus:ring-0 dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
+                className="p-2 dark:text-amber-100 w-full rounded-lg border dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:ring focus:ring-amber-500 ring-offset-0 focus:border-amber-500 hover:border-amber-500"
                 {...props}
             />
         </label>

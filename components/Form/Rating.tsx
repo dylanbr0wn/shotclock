@@ -27,13 +27,13 @@ const Rating = ({ getValues, setValue }: IRating) => {
                 data-index={val}
                 // ref={divRef}
                 onClick={() => {
-                    setValue("rating", val, {
+                    setValue("rating", currentHover, {
                         shouldValidate: true,
                         shouldDirty: true,
                         shouldTouch: true,
                     });
                 }}
-                className={`text-amber-500 h-10 w-10 p-1 ${
+                className={`text-amber-500 h-10 w-10 p-1 pointer-events-auto ${
                     currentHover === val && "active:text-amber-600"
                 }`}
                 onMouseMove={(e) => {
@@ -56,6 +56,7 @@ const Rating = ({ getValues, setValue }: IRating) => {
                     const index = Number(
                         e.currentTarget.getAttribute("data-index")
                     );
+
                     if (index !== val) {
                         setCurrentHover(index);
                     } else {

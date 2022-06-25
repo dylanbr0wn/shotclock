@@ -26,7 +26,7 @@ const Welcome = () => {
         <Transition appear show={isOpen} as={React.Fragment}>
             <Dialog
                 as="div"
-                className={`relative z-10 ${theme}`}
+                className={`relative z-10 ${theme} dark:text-amber-100 text-stone-900 dark:bg-stone-900 bg-white selection:bg-amber-500 selection:text-amber-200 `}
                 onClose={closeModal}
             >
                 <Transition.Child
@@ -52,7 +52,7 @@ const Welcome = () => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white dark:bg-stone-800 p-6 text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white dark:bg-stone-800 p-6 text-left align-middle shadow-xl transition-all text-gray-900 dark:text-amber-100">
                                 <Dialog.Title
                                     as="h3"
                                     className="text-2xl font-medium leading-6 text-gray-900 dark:text-amber-100"

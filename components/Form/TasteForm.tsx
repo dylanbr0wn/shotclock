@@ -39,7 +39,7 @@ const TasteForm = ({
     defaultForm?: Brew | undefined;
 }) => {
     const { theme } = useTheme();
-    const { addBrew } = useBrews();
+    const { addBrew, updateBrew } = useBrews();
     const { time } = useStore((state) => ({ time: state.time }), shallow);
 
     const {
@@ -66,7 +66,13 @@ const TasteForm = ({
     const onSubmit = (data: Brew) => {
         if (!isValid) return;
         try {
-            addBrew({ ...data, id: cuid(), created: new Date().toISOString() });
+            if (defaultForm?.id) updateBrew(defaultForm?.id, data);
+            else
+                addBrew({
+                    ...data,
+                    id: cuid(),
+                    created: new Date().toISOString(),
+                });
             notify(theme === "dark");
             splitbee.track("Brew made");
             closeModal();
@@ -173,7 +179,7 @@ const TasteForm = ({
                                     />
                                     <input
                                         disabled
-                                        className="p-2 dark:text-amber-300 w-full rounded-lg border focus:ring-0 dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
+                                        className="p-2 dark:text-amber-300 w-full rounded-lg border focus:ring-0 dark:bg-stone-900 bg-white border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
                                         value={`${(
                                             "0" + Math.floor((time / 1000) % 60)
                                         ).slice(-2)}:${(
@@ -200,7 +206,7 @@ const TasteForm = ({
                         <textarea
                             rows={4}
                             placeholder={`Aroma, Sweetness, Bitterness, Taste, Body, Aftertaste`}
-                            className="p-2 dark:text-amber-300 w-full rounded-lg border focus:ring-0 dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
+                            className="p-2 dark:text-amber-300 w-full rounded-lg border dark:bg-stone-900 border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:ring focus:ring-amber-500 ring-offset-0 focus:border-amber-500 hover:border-amber-500"
                             {...register("comments")}
                         />
                     </label>

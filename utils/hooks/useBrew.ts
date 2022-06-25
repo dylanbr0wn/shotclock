@@ -38,8 +38,14 @@ const useBrews = () => {
         setBrews(brews.filter((brew) => brew.id !== id));
     };
 
+    const updateBrew = (id: string, newBrew: Brew) => {
+        setBrews(
+            brews.map((brew) => (brew.id === id ? { ...newBrew, id } : brew))
+        );
+    }
+
     const memoBrews = useMemo(() => sortForms(), [brews]);
-    return { brews: memoBrews, addBrew, removeBrew };
+    return { brews: memoBrews, addBrew, removeBrew, updateBrew };
 };
 
 export default useBrews;

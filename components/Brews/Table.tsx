@@ -77,8 +77,11 @@ const CustTable = () => {
                     })}
                     {brews.length === 0 && (
                         <tr>
-                            <td colSpan={3} className="text-center py-3">
-                                No caffiene to display... yet 🤔
+                            <td
+                                colSpan={3}
+                                className="text-center py-3 text-stone-900 dark:text-amber-100"
+                            >
+                                No caffeine to display... yet 🤔
                             </td>
                         </tr>
                     )}
@@ -87,7 +90,7 @@ const CustTable = () => {
             <Transition appear show={isOpen} as={React.Fragment}>
                 <Dialog
                     as="div"
-                    className={`${theme} relative z-10`}
+                    className={`${theme} relative z-10 dark:text-amber-100 text-stone-900 dark:bg-stone-900 bg-white selection:bg-amber-500 selection:text-amber-200 `}
                     onClose={closeModal}
                 >
                     <Transition.Child

@@ -62,7 +62,7 @@ const Roast = ({ control, setValue }: IRoast) => {
                                             ? `${plan.bg}`
                                             : "bg-white dark:bg-stone-900 dark:text-amber-100"
                                     }
-                                    relative  border  border-stone-200 dark:border-stone-600 placeholder:text-stone-400  ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500 flex cursor-pointer transition-colors rounded-lg px-3 py-2 focus:outline-none`
+                                    relative  border  border-stone-200 dark:border-stone-600 placeholder:text-stone-400  ring-0 outline-none focus:ring focus:ring-amber-500 ring-offset-0 focus:border-amber-500 hover:border-amber-500 flex cursor-pointer transition-colors rounded-lg px-3 py-2 focus:outline-none`
                                 }
                             >
                                 {({ active, checked }) => (

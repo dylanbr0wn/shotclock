@@ -31,7 +31,7 @@ const SaveButton = () => {
             <Transition appear show={isOpen} as={React.Fragment}>
                 <Dialog
                     as="div"
-                    className={`relative z-10 ${theme}`}
+                    className={`relative z-10 ${theme} dark:text-amber-100 text-stone-900 dark:bg-stone-900 bg-white selection:bg-amber-500 selection:text-amber-200 `}
                     onClose={closeModal}
                 >
                     <Transition.Child
