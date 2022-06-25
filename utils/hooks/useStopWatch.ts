@@ -2,6 +2,7 @@ import * as React from "react";
 import { Howl } from "howler";
 import useStore from "../zustand";
 import shallow from 'zustand/shallow'
+import useLocalStorage from "./useLocalStorage";
 
 export const useStopWatch = () => {
     const timer = React.useRef<NodeJS.Timer>();
@@ -9,6 +10,8 @@ export const useStopWatch = () => {
     const shouldPlay = React.useRef<boolean>();
     const timeRef = React.useRef(useStore.getState().time)
     const percentRef = React.useRef(useStore.getState().percent)
+
+    const [volumeOn] = useLocalStorage("volumeOn", true);
 
     const { goal, setPercent, setTime, setRunning } = useStore(
         (state) => ({ goal: state.goal, percent: state.percent, setTime: state.setTime, setPercent: state.setPercent, setRunning: state.setRunning, }),
@@ -54,8 +57,11 @@ export const useStopWatch = () => {
 
 
             } if (time > goal) {
+
                 if (shouldPlay.current) {
-                    soundRef?.current?.play()
+                    if (volumeOn) {
+                        soundRef?.current?.play()
+                    }
                     soundRef.current = undefined;
                     shouldPlay.current = false;
                 }

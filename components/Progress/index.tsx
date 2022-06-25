@@ -27,7 +27,14 @@ const Progress = () => {
     return (
         <>
             <div className="absolute inset-0 pointer-events-none w-screen h-screen bg-white dark:bg-stone-900 overflow-hidden">
-                <div className="flex flex-col h-screen">
+                <div className="flex flex-col h-screen relative">
+                    <div
+                        className={`absolute top-[15vh] right-0 w-20 text-center border-b border-amber-100 duration-500 transition-opacity ${
+                            percent > 0 ? "opacity-100" : "opacity-25"
+                        }`}
+                    >
+                        max fill
+                    </div>
                     <svg
                         // style={{
                         //     ...props,

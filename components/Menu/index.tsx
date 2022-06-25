@@ -2,11 +2,18 @@ import Link from "next/link";
 import * as React from "react";
 import { FeedbackFish } from "@feedback-fish/react";
 import Head from "next/head";
-import { MoonIcon, SunIcon } from "@heroicons/react/outline";
+import {
+    MoonIcon,
+    SunIcon,
+    VolumeOffIcon,
+    VolumeUpIcon,
+} from "@heroicons/react/outline";
 import { useTheme } from "next-themes";
+import useLocalStorage from "../../utils/hooks/useLocalStorage";
 
 const Menu = () => {
     const { theme, setTheme } = useTheme();
+    const [volumeOn, setVolumeOn] = useLocalStorage<boolean>("volumeOn", true);
     return (
         <>
             <Head>
@@ -98,6 +105,18 @@ const Menu = () => {
                     </Link>
 
                     <div className="flex-grow"></div>
+                    <button
+                        title="toggle volume"
+                        name="toggle volume"
+                        onClick={() => setVolumeOn(!volumeOn)}
+                        className="hmy-auto  h-14 mx-3 group  "
+                    >
+                        {!volumeOn ? (
+                            <VolumeOffIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                        ) : (
+                            <VolumeUpIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600" />
+                        )}
+                    </button>
                     <button
                         title="toggle theme"
                         name="toggle theme"
