@@ -5,6 +5,7 @@ import useStore from "../../utils/zustand";
 import shallow from "zustand/shallow";
 
 const Progress = () => {
+    const [sab, setSab] = React.useState(0);
     const { percent, running } = useStore(
         (state) => ({
             running: state.running,
@@ -19,11 +20,15 @@ const Progress = () => {
     }));
 
     React.useEffect(() => {
-        // const sab = Number(
-        //     getComputedStyle(window.document.documentElement)
-        //         .getPropertyValue("--sab")
-        //         .slice(0, -2)
-        // );
+        const sab = Number(
+            getComputedStyle(window.document.documentElement)
+                .getPropertyValue("--sab")
+                .slice(0, -2)
+        );
+        setSab(sab);
+    }, []);
+
+    React.useEffect(() => {
         // console.log();
         // api({
         //     height: `${
@@ -35,21 +40,33 @@ const Progress = () => {
         //     ((0.8 * (window.screen.height - sab - 64)) / window.screen.height) *
         //         100
         // );
-        api({
-            height: `${
-                (percent / 100) * 80
-                // ((0.8 * (window.screen.height - sab - 64)) /
-                //     window.screen.height) *
-                // 100
-            }vh`,
-        });
-    }, [percent]);
+
+        if (sab > 0) {
+            api({
+                height: `${
+                    (percent / 100) * 75
+                    // ((0.8 * (window.screen.height - sab - 64)) /
+                    //     window.screen.height) *
+                    // 100
+                }vh`,
+            });
+        } else {
+            api({
+                height: `${
+                    (percent / 100) * 80
+                    // ((0.8 * (window.screen.height - sab - 64)) /
+                    //     window.screen.height) *
+                    // 100
+                }vh`,
+            });
+        }
+    }, [percent, sab]);
 
     return (
         <>
             <div
                 className={`absolute ${
-                    styles.maxFillTop
+                    sab > 0 ? "bottom-[75vh]" : "bottom-[80vh]"
                 } right-0 w-20 text-center border-b dark:border-amber-100 border-stone-900 dark:text-amber-100 text-stone-900 duration-500 transition-opacity ${
                     percent > 0 ? "opacity-100" : "opacity-25"
                 }`}

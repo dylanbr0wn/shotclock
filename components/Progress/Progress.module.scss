@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .waves {
     position: relative;
     width: 100vw;
@@ -75,6 +77,15 @@
     @return $number;
 }
 
+@function getMaxFillHeight() {
+    $safeArea: env(safe-area-inset-bottom, 0px);
+    @if max($safeArea, 0) != 0 {
+        @return 75vh;
+    } @else {
+        @return 80vh;
+    }
+}
+
 .maxFillTop {
-    bottom: 80vh;
+    bottom: getMaxFillHeight();
 }
