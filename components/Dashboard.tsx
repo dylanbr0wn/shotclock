@@ -4,7 +4,7 @@ import AppWrapper from "./AppWrapper";
 const Dashboard = () => {
     return (
         <AppWrapper>
-            <div className=" h-screen w-full overflow-hidden">
+            <div className=" w-full overflow-hidden">
                 <div className=" max-w-3xl mx-auto mt-24 h-full px-2 md:px-0">
                     <h1 className="text-3xl font-bold my-5 text-stone-900 dark:text-amber-100">
                         Your Brews

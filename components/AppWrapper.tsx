@@ -18,7 +18,7 @@ const AppWrapper = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className={`${theme}`}>
             <div
-                className={`  selection:bg-amber-500 selection:text-amber-200 w-screen min-h-screen text-stone-900 dark:text-amber-100 dark:bg-stone-900 bg-white `}
+                className={`  selection:bg-amber-500 selection:text-amber-200 w-screen text-stone-900 dark:text-amber-100 dark:bg-stone-900 bg-white `}
             >
                 <Menu />
                 {children}
