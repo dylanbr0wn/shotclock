@@ -6,6 +6,7 @@ import shallow from "zustand/shallow";
 
 const Progress = () => {
     const [sab, setSab] = React.useState(0);
+    const [sat, setSat] = React.useState(0);
     const { percent, running } = useStore(
         (state) => ({
             running: state.running,
@@ -25,7 +26,12 @@ const Progress = () => {
                 .getPropertyValue("--sab")
                 .slice(0, -2)
         );
-        setSab(sab);
+        const sat = Number(
+            getComputedStyle(window.document.documentElement)
+                .getPropertyValue("--sat")
+                .slice(0, -2)
+        );
+        setSat(sat);
     }, []);
 
     React.useEffect(() => {
@@ -40,33 +46,29 @@ const Progress = () => {
         //     ((0.8 * (window.screen.height - sab - 64)) / window.screen.height) *
         //         100
         // );
-
-        if (sab > 0) {
-            api({
-                height: `${
-                    (percent / 100) * 75
-                    // ((0.8 * (window.screen.height - sab - 64)) /
-                    //     window.screen.height) *
-                    // 100
-                }vh`,
-            });
+        let height = "0vh";
+        if (sab > 0 && sat > 0) {
+            height = `${(percent / 100) * 70}vh`;
+        } else if (sab > 0 || sat > 0) {
+            height = `${(percent / 100) * 75}vh`;
         } else {
-            api({
-                height: `${
-                    (percent / 100) * 80
-                    // ((0.8 * (window.screen.height - sab - 64)) /
-                    //     window.screen.height) *
-                    // 100
-                }vh`,
-            });
+            height = `${(percent / 100) * 80}vh`;
         }
-    }, [percent, sab]);
+
+        api({
+            height,
+        });
+    }, [percent, sab, sat]);
 
     return (
         <>
             <div
                 className={`absolute ${
-                    sab > 0 ? "bottom-[75vh]" : "bottom-[80vh]"
+                    sab > 0 && sat > 0
+                        ? "bottom-[70vh]"
+                        : sab > 0 || sat > 0
+                        ? "bottom-[75vh]"
+                        : "bottom-[80vh]"
                 } right-0 w-20 text-center border-b dark:border-amber-100 border-stone-900 dark:text-amber-100 text-stone-900 duration-500 transition-opacity ${
                     percent > 0 ? "opacity-100" : "opacity-25"
                 }`}
