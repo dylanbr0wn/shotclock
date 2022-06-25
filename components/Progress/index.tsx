@@ -19,8 +19,29 @@ const Progress = () => {
     }));
 
     React.useEffect(() => {
+        // const sab = Number(
+        //     getComputedStyle(window.document.documentElement)
+        //         .getPropertyValue("--sab")
+        //         .slice(0, -2)
+        // );
+        // console.log();
+        // api({
+        //     height: `${
+        //         (percent / 100) * window.screen.height * 0.8 -
+        //         Number(sab.slice(0, -2))
+        //     }px`,
+        // });
+        // console.log(
+        //     ((0.8 * (window.screen.height - sab - 64)) / window.screen.height) *
+        //         100
+        // );
         api({
-            height: `${(percent / 100) * 80}vh`,
+            height: `${
+                (percent / 100) * 80
+                // ((0.8 * (window.screen.height - sab - 64)) /
+                //     window.screen.height) *
+                // 100
+            }vh`,
         });
     }, [percent]);
 
@@ -85,7 +106,7 @@ const Progress = () => {
                     </svg>
                     <a.div
                         style={{ height }}
-                        className="flex bg-amber-800 transform scale-80 md:scale-100 origin-bottom flex-shrink"
+                        className="flex bg-amber-800 origin-bottom flex-shrink"
                     />
                     {/* <div
                         className={`flex  bg-amber-800 origin-bottom flex-shrink ${styles.tabExtra}`}

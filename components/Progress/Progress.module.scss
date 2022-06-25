@@ -67,6 +67,14 @@
     bottom: env(safe-area-inset-bottom);
 }
 
+@function strip-unit($number) {
+    @if type-of($number) == "number" and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+
+    @return $number;
+}
+
 .maxFillTop {
-    bottom: calc(80vh + env(safe-area-inset-bottom));
+    bottom: 80vh;
 }

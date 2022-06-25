@@ -31,7 +31,7 @@ const Time = () => {
                     open ? "opacity-100" : "opacity-0 "
                 } pointer-events-none absolute h-screen w-screen bg-stone-900/50 top-0 left-0 transition-all`}
             /> */}
-            <span className="absolute transform -translate-x-[50%] -translate-y-[50%] top-[60%]  md:top-[50%] left-[50%] inline-block text-center">
+            <span className="absolute transform -translate-x-[50%] -translate-y-[50%] top-[60%]  md:top-[60%] left-[50%] inline-block text-center">
                 <div
                     className={`text-7xl ${
                         percent < 75
@@ -42,7 +42,7 @@ const Time = () => {
                     {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
                     {("0" + (Math.floor(time / 10) % 100)).slice(-2)}
                 </div>
-                <div className="flex flex-col space-y-2 mt-8 bg-amber-700/10 dark:bg-amber-100/70 p-2 rounded-lg">
+                <div className="flex flex-col space-y-2 mt-4 md:mt-8 bg-amber-700/10 dark:bg-amber-100/70 p-2 rounded-lg">
                     <div className="flex mx-auto space-x-2">
                         <button
                             title="start"
@@ -79,11 +79,11 @@ const Time = () => {
                 <div
                     className={`${
                         time > 0 && "opacity-0 pointer-events-none"
-                    } transition-opacity duration-1000 text-stone-900 dark:text-amber-100 mt-8 font-extrabold text-2xl text-center`}
+                    } transition-opacity duration-1000 text-stone-900 dark:text-amber-100 mt-4 md:mt-8 font-extrabold text-2xl text-center`}
                 >
                     Target Brew Time
                 </div>
-                <div className="flex flex-col mx-auto  mt-8 rounded-lg ">
+                <div className="flex flex-col mx-auto  mt-4 rounded-lg ">
                     <a.div
                         style={{ opacity }}
                         className={`text-3xl ${
