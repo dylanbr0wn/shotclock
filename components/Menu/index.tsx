@@ -47,6 +47,16 @@ const CustMenu = () => {
                     name="description"
                     content="Time, track, and log your coffee journey."
                 />
+                <meta
+                    name="theme-color"
+                    content={theme === "dark" ? "#1c1917" : "#92400E"}
+                />
+                {/* <meta
+                    name="theme-color"
+                    content="#FFFFFF"
+                    media="(prefers-color-scheme: light)"
+                /> */}
+
                 <link rel="manifest" href="/site.webmanifest" />
                 <title>shotclock</title>
             </Head>
