@@ -29,7 +29,7 @@ const Progress = () => {
             <div className="absolute inset-0 pointer-events-none w-screen h-screen bg-white dark:bg-stone-900 overflow-hidden">
                 <div className="flex flex-col h-screen relative">
                     <div
-                        className={`absolute top-[15vh] right-0 w-20 text-center border-b border-amber-100 duration-500 transition-opacity ${
+                        className={`absolute top-[15vh] right-0 w-20 text-center border-b border-amber-100 dark:border-stone-900 dark:text-stone-900 duration-500 transition-opacity ${
                             percent > 0 ? "opacity-100" : "opacity-25"
                         }`}
                     >
