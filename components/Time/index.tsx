@@ -24,6 +24,12 @@ const Time = () => {
         config: config.molasses,
     });
 
+    React.useEffect(() => {
+        return () => {
+            reset();
+        };
+    }, []);
+
     return (
         <>
             {/* <div
