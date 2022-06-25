@@ -20,14 +20,16 @@ const Progress = () => {
 
     React.useEffect(() => {
         api({
-            height: `${(percent / 100) * 80}%`,
+            height: `calc(${
+                (percent / 100) * 80
+            }% + env(safe-area-inset-bottom)) `,
         });
     }, [percent]);
 
     return (
         <>
             <div className="absolute inset-0 pointer-events-none w-screen h-screen bg-white dark:bg-stone-900 overflow-hidden">
-                <div className="flex flex-col h-screen relative">
+                <div className={`flex flex-col h-full relative bottom-0`}>
                     <div
                         className={`absolute top-[15vh] right-0 w-20 text-center border-b dark:border-amber-100 border-stone-900 dark:text-amber-100 text-stone-900 duration-500 transition-opacity ${
                             percent > 0 ? "opacity-100" : "opacity-25"
@@ -81,11 +83,11 @@ const Progress = () => {
                     </svg>
                     <a.div
                         style={{ height }}
-                        className="flex bg-amber-800 h-[80vh] origin-bottom flex-shrink"
+                        className="flex bg-amber-800 origin-bottom flex-shrink"
                     />
-                    <div
+                    {/* <div
                         className={`flex  bg-amber-800 origin-bottom flex-shrink ${styles.tabExtra}`}
-                    />
+                    /> */}
                 </div>
             </div>
         </>

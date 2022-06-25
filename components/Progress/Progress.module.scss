@@ -66,3 +66,7 @@
 .tabExtra {
     // height: env(safe-area-inset-bottom);
 }
+
+.safeBottom {
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+}
