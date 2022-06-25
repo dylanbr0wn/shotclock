@@ -3,6 +3,7 @@ import { Howl } from "howler";
 import useStore from "../zustand";
 import shallow from 'zustand/shallow'
 import useLocalStorage from "./useLocalStorage";
+import useSound from 'use-sound';
 
 export const useStopWatch = () => {
     const timer = React.useRef<NodeJS.Timer>();
@@ -11,8 +12,9 @@ export const useStopWatch = () => {
     const timeRef = React.useRef(useStore.getState().time)
     const percentRef = React.useRef(useStore.getState().percent)
 
-    const [volumeOn] = useLocalStorage("volumeOn", true);
 
+    const [volumeOn] = useLocalStorage("volumeOn", true);
+    const [play, { sound }] = useSound("/chime.wav", { soundEnabled: volumeOn });
     const { goal, setPercent, setTime, setRunning } = useStore(
         (state) => ({ goal: state.goal, percent: state.percent, setTime: state.setTime, setPercent: state.setPercent, setRunning: state.setRunning, }),
         shallow
@@ -36,11 +38,16 @@ export const useStopWatch = () => {
     };
 
     const start = () => {
-        if (!soundRef.current) soundRef.current = new Howl({
-            src: ["/chime.wav"],
-            loop: false,
+        (sound as Howl).mute
+        // if (!soundRef.current) soundRef.current = new Howl({
+        //     src: ["/chime.wav"],
+        //     loop: false,
+        //     html5: true,
+        //     onplayerror: (id) => {
 
-        });
+        //     }
+
+        // });
 
         const timerStart = Date.now() - timeRef.current
         setRunning(true);
@@ -59,10 +66,8 @@ export const useStopWatch = () => {
             } if (time > goal) {
 
                 if (shouldPlay.current) {
-                    if (volumeOn) {
-                        soundRef?.current?.play()
-                    }
-                    soundRef.current = undefined;
+                    play()
+                    // soundRef.current = undefined;
                     shouldPlay.current = false;
                 }
 
