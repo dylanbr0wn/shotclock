@@ -68,5 +68,5 @@
 }
 
 .safeBottom {
-    bottom: calc(1rem + env(safe-area-inset-bottom));
+    bottom: env(safe-area-inset-bottom);
 }

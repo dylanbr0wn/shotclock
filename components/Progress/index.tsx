@@ -20,15 +20,15 @@ const Progress = () => {
 
     React.useEffect(() => {
         api({
-            height: `calc(${
-                (percent / 100) * 80
-            }% + env(safe-area-inset-bottom)) `,
+            height: `calc(${(percent / 100) * 80}%`,
         });
     }, [percent]);
 
     return (
         <>
-            <div className="absolute inset-0 pointer-events-none w-screen h-screen bg-white dark:bg-stone-900 overflow-hidden">
+            <div
+                className={`fixed pointer-events-none w-screen bg-white dark:bg-stone-900 overflow-hidden ${styles.safeBottom}`}
+            >
                 <div className={`flex flex-col h-full relative bottom-0`}>
                     <div
                         className={`absolute top-[15vh] right-0 w-20 text-center border-b dark:border-amber-100 border-stone-900 dark:text-amber-100 text-stone-900 duration-500 transition-opacity ${
