@@ -16,7 +16,7 @@ import { Menu, Transition } from "@headlessui/react";
 import CustMobileLink from "./CustMobileLink";
 
 const CustMenu = () => {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
     const [volumeOn, setVolumeOn] = useLocalStorage<boolean>("volumeOn", true);
     return (
         <>
@@ -50,7 +50,7 @@ const CustMenu = () => {
                 />
                 <meta
                     name="theme-color"
-                    content={theme === "dark" ? "#1c1917" : "#92400E"}
+                    content={resolvedTheme === "dark" ? "#1c1917" : "#92400E"}
                 />
                 {/* <meta
                     name="theme-color"
@@ -120,11 +120,13 @@ const CustMenu = () => {
                         title="toggle theme"
                         name="toggle theme"
                         onClick={() =>
-                            setTheme(theme === "dark" ? "light" : "dark")
+                            setTheme(
+                                resolvedTheme === "dark" ? "light" : "dark"
+                            )
                         }
                         className="my-auto hidden md:block h-14 mx-3 group pointer-events-auto border-b border-white dark:border-stone-900 hover:border-transparent dark:hover:border-transparent"
                     >
-                        {theme === "light" ? (
+                        {resolvedTheme === "light" ? (
                             <MoonIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600 pointer-events-none" />
                         ) : (
                             <SunIcon className="h-6 w-6 border-b border-transparent text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600 pointer-events-none " />
@@ -202,7 +204,7 @@ const CustMenu = () => {
                                             name="toggle theme"
                                             onClick={() =>
                                                 setTheme(
-                                                    theme === "dark"
+                                                    resolvedTheme === "dark"
                                                         ? "light"
                                                         : "dark"
                                                 )
@@ -210,7 +212,7 @@ const CustMenu = () => {
                                             className="my-auto flex-grow h-14 p-3 group pointer-events-auto bg-white dark:bg-amber-700/10 shadow-md  rounded-lg
                                                 dark:border-stone-900 hover:border-transparent dark:hover:border-transparent "
                                         >
-                                            {theme === "light" ? (
+                                            {resolvedTheme === "light" ? (
                                                 <MoonIcon className="h-8 w-8 mx-auto  text-stone-600 dark:text-amber-600 group-hover:border-stone-600 dark:group-hover:border-amber-600 pointer-events-none" />
                                             ) : (
                                                 <SunIcon className="h-8 w-8 mx-auto text-stone-600 dark:text-amber-600 dark:group-hover:border-amber-600 pointer-events-none " />

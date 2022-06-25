@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <ThemeProvider>
+            <ThemeProvider attribute="class">
                 <Component {...pageProps} />
             </ThemeProvider>
         </QueryClientProvider>

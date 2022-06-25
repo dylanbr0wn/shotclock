@@ -42,7 +42,7 @@ input[type="number"] {
     width: 100vw;
 }
 
-[data-theme="dark"] {
+html.dark {
     --background: #1c1917;
     --foreground: white;
 }

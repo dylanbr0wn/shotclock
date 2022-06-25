@@ -38,7 +38,7 @@ const TasteForm = ({
     closeModal: () => void;
     defaultForm?: Brew | undefined;
 }) => {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
     const { addBrew, updateBrew } = useBrews();
     const { time } = useStore((state) => ({ time: state.time }), shallow);
 
@@ -73,7 +73,7 @@ const TasteForm = ({
                     id: cuid(),
                     created: new Date().toISOString(),
                 });
-            notify(theme === "dark");
+            notify(resolvedTheme === "dark");
             splitbee.track("Brew made");
             closeModal();
         } catch (e) {

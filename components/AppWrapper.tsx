@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import Welcome from "./Welcome";
 
 const AppWrapper = ({ children }: { children: React.ReactNode }) => {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = React.useState(false);
     React.useEffect(() => {
         setMounted(true);
@@ -16,7 +16,7 @@ const AppWrapper = ({ children }: { children: React.ReactNode }) => {
         return null;
     }
     return (
-        <div className={`${theme}`}>
+        <div>
             <div
                 className={`  selection:bg-amber-500 selection:text-amber-200 w-screen text-stone-900 dark:text-amber-100 dark:bg-stone-900 bg-white `}
             >

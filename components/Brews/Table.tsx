@@ -1,5 +1,3 @@
-import z from "zod";
-
 import * as React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { TrashIcon, XIcon } from "@heroicons/react/outline";
@@ -7,7 +5,6 @@ import TasteForm from "../Form/TasteForm";
 import useBrews from "../../utils/hooks/useBrew";
 import { Brew } from "../../utils/types";
 import splitbee from "@splitbee/web";
-import { useTheme } from "next-themes";
 
 const CustTable = () => {
     const loadBrew = (brew: Brew) => {
@@ -15,8 +12,6 @@ const CustTable = () => {
         openModal();
         console.log(brew);
     };
-
-    const { theme } = useTheme();
 
     const [selectedBrew, setSelectedBrew] = React.useState<Brew>();
 
@@ -90,7 +85,7 @@ const CustTable = () => {
             <Transition appear show={isOpen} as={React.Fragment}>
                 <Dialog
                     as="div"
-                    className={`${theme} relative z-10 dark:text-amber-100 text-stone-900 dark:bg-stone-900 bg-white selection:bg-amber-500 selection:text-amber-200 `}
+                    className={` relative z-10 dark:text-amber-100 text-stone-900 dark:bg-stone-900 bg-white selection:bg-amber-500 selection:text-amber-200 `}
                     onClose={closeModal}
                 >
                     <Transition.Child
