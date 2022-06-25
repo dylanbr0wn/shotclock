@@ -1,4 +1,4 @@
-import { BookmarkIcon } from "@heroicons/react/outline";
+import { BookmarkIcon, XIcon } from "@heroicons/react/outline";
 import { Dialog, Transition } from "@headlessui/react";
 import shallow from "zustand/shallow";
 import useStore from "../../utils/zustand";
@@ -58,11 +58,17 @@ const SaveButton = () => {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white dark:bg-stone-800 p-6 text-left align-middle shadow-xl transition-all">
+                                    <button
+                                        onClick={closeModal}
+                                        className="p-1 absolute top-[1%] right-[1%] text-stone-700 dark:text-amber-300"
+                                    >
+                                        <XIcon className="h-6 w-6" />
+                                    </button>
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900 dark:text-amber-100"
+                                        className="text-2xl font-medium leading-6 text-gray-900 dark:text-amber-100"
                                     >
-                                        Your Brew
+                                        Fresh Brew
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <TasteForm closeModal={closeModal} />

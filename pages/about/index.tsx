@@ -23,7 +23,7 @@ export const getStaticProps = async () => {
 const About = ({ blockMap }) => {
     return (
         <AppWrapper>
-            <div className="max-w-3xl mx-auto pt-10 text-stone-900 dark:text-amber-100">
+            <div className="max-w-3xl mx-auto pt-10 text-stone-900 dark:text-amber-100 px-2 md:px-0">
                 <NotionRenderer blockMap={blockMap} />
             </div>
         </AppWrapper>

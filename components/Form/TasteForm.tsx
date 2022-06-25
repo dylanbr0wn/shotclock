@@ -97,7 +97,7 @@ const TasteForm = ({
                 <div className="my-3">
                     <FormDisclosure title="Coffee Details">
                         <div className="flex flex-col space-y-3">
-                            <div className="flex space-x-3">
+                            <div className="flex flex-col md:flex-row space-y-3 md:space-x-3 md:space-y-0">
                                 <DefaultInput
                                     labelName="coffeeName"
                                     title="Coffee Name:"
@@ -122,7 +122,7 @@ const TasteForm = ({
                 <div className="my-3">
                     <FormDisclosure title="Brew Details">
                         <div className="flex flex-col space-y-3 w-full">
-                            <div className="flex space-x-3">
+                            <div className="flex flex-col md:flex-row space-y-3 md:space-x-3 md:space-y-0">
                                 <label className="flex flex-col w-full">
                                     <div className=" text-sm text-stone-500 dark:text-amber-100/60">
                                         Brew Method:
@@ -146,16 +146,15 @@ const TasteForm = ({
                                     labelName="coffeeIn"
                                     title="Coffee In (weight):"
                                     placeholder="18"
-                                    width="w-1/3"
+                                    width="flex-grow"
                                     {...register("coffeeIn")}
                                 />
                                 <DefaultInput
-                                    number
-                                    labelName="coffeeIn"
-                                    title="Coffee In (weight):"
-                                    placeholder="18"
-                                    width="w-1/3"
-                                    {...register("coffeeIn")}
+                                    labelName="coffeeOut"
+                                    title="Coffee Out (weight):"
+                                    placeholder="35"
+                                    width="flex-grow"
+                                    {...register("coffeeOut")}
                                 />
                                 {/* <DefaultInput
                                     number
@@ -169,7 +168,7 @@ const TasteForm = ({
                                 /> */}
                             </div>
                             <div className="flex space-x-3 w-full">
-                                <label className="flex flex-col w-1/3">
+                                <label className="flex flex-col w-1/2 md:1/3">
                                     <div className=" text-sm text-stone-500 dark:text-amber-100/60">
                                         Time(from timer):
                                     </div>
@@ -199,7 +198,7 @@ const TasteForm = ({
                         </div>
                         <Rating getValues={getValues} setValue={setValue} />
                     </label>
-                    <label className="flex flex-col w-2/3">
+                    <label className="flex flex-col w-full md:w-2/3">
                         <div className=" text-sm text-stone-500 dark:text-amber-100/60">
                             Comments:
                         </div>

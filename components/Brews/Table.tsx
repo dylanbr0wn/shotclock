@@ -2,7 +2,7 @@ import z from "zod";
 
 import * as React from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { TrashIcon } from "@heroicons/react/outline";
+import { TrashIcon, XIcon } from "@heroicons/react/outline";
 import TasteForm from "../Form/TasteForm";
 import useBrews from "../../utils/hooks/useBrew";
 import { Brew } from "../../utils/types";
@@ -39,8 +39,8 @@ const CustTable = () => {
 
     return (
         <>
-            <table className="table-auto max-h-full min-w-full border-separate border-spacing-0">
-                <thead className="">
+            <table className="table-auto max-h-full min-w-full border-separate border-spacing-0 rounded-t-xl">
+                <thead className="rounded-t-xl">
                     <tr className="text-amber-900 dark:text-amber-100">
                         <th className="sticky top-0 border-b border-amber-300 dark:bg-amber-900/30  bg-amber-100 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold  backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 mx-0">
                             Name
@@ -58,7 +58,7 @@ const CustTable = () => {
                         return (
                             <tr
                                 onClick={() => loadBrew(brew)}
-                                className="odd:bg-amber-50 dark:odd:bg-stone-800 cursor-pointer hover:bg-amber-50 odd:hover:bg-amber-100 dark:hover:bg-stone-800 dark:odd:hover:bg-stone-700"
+                                className="odd:bg-amber-50 dark:odd:bg-stone-800 cursor-pointer hover:bg-amber-50 odd:hover:bg-amber-100 dark:hover:bg-stone-800 dark:odd:hover:bg-stone-700 "
                                 key={brew.id}
                             >
                                 <td className="whitespace-nowrap border-b border-amber-200 dark:border-stone-700 py-4 pl-4 pr-3 text-sm font-medium text-stone-900 dark:text-amber-100 sm:pl-6 lg:pl-8">
@@ -117,11 +117,17 @@ const CustTable = () => {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <Dialog.Panel className="w-full max-w-xl transform rounded-2xl bg-white dark:bg-stone-800 p-6 text-left align-middle shadow-xl transition-all">
+                                    <button
+                                        onClick={closeModal}
+                                        className="p-1 absolute top-[1%] right-[1%] text-stone-700 dark:text-amber-300"
+                                    >
+                                        <XIcon className="h-6 w-6" />
+                                    </button>
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900 dark:text-amber-100 flex"
+                                        className="text-2xl font-medium leading-6 text-gray-900 dark:text-amber-100 flex"
                                     >
-                                        <div className="flex-grow">
+                                        <div className="my-auto mr-3">
                                             Your Brew
                                         </div>
 
@@ -132,9 +138,9 @@ const CustTable = () => {
                                                 );
                                                 pourOneOut(selectedBrew);
                                             }}
-                                            className="inline-flex text-sm justify-center rounded-md border border-transparent bg-red-100 dark:bg-red-800/40 px-4 py-2 font-medium text-red-900 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-700/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 transition-colors"
+                                            className="inline-flex text-sm justify-center rounded-md border border-transparent px-4 py-2 font-medium text-red-800 dark:text-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 transition-colors"
                                         >
-                                            <TrashIcon className="h-5 w-5 my-auto mr-3" />
+                                            <TrashIcon className="h-5 w-5 my-auto mr-2" />
                                             <div>Pour out</div>
                                         </button>
                                     </Dialog.Title>

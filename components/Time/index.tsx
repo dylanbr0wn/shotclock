@@ -31,7 +31,7 @@ const Time = () => {
                     open ? "opacity-100" : "opacity-0 "
                 } pointer-events-none absolute h-screen w-screen bg-stone-900/50 top-0 left-0 transition-all`}
             /> */}
-            <span className="absolute transform -translate-x-[50%] -translate-y-[50%] top-[50%] left-[50%] inline-block text-center">
+            <span className="absolute transform -translate-x-[50%] -translate-y-[50%] top-[60%]  md:top-[50%] left-[50%] inline-block text-center">
                 <div
                     className={`text-7xl ${
                         percent < 75
