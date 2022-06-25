@@ -83,6 +83,9 @@ const Progress = () => {
                         style={{ height }}
                         className="flex bg-amber-800 h-[80vh] origin-bottom flex-shrink"
                     />
+                    <div
+                        className={`flex  bg-amber-800 origin-bottom flex-shrink ${styles.tabExtra}`}
+                    />
                 </div>
             </div>
         </>
