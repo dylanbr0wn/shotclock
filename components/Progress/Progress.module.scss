@@ -63,10 +63,10 @@
     }
 }
 
-.tabExtra {
-    // height: env(safe-area-inset-bottom);
-}
-
 .safeBottom {
     bottom: env(safe-area-inset-bottom);
+}
+
+.maxFillTop {
+    top: calc(15vh - env(safe-area-inset-bottom));
 }

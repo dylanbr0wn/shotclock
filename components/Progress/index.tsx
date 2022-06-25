@@ -27,7 +27,9 @@ const Progress = () => {
     return (
         <>
             <div
-                className={`absolute top-[15vh] right-0 w-20 text-center border-b dark:border-amber-100 border-stone-900 dark:text-amber-100 text-stone-900 duration-500 transition-opacity ${
+                className={`absolute ${
+                    styles.maxFillTop
+                } right-0 w-20 text-center border-b dark:border-amber-100 border-stone-900 dark:text-amber-100 text-stone-900 duration-500 transition-opacity ${
                     percent > 0 ? "opacity-100" : "opacity-25"
                 }`}
             >
