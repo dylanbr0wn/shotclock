@@ -1,6 +1,5 @@
 import "../styles/index.scss";
 import type { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
 import * as React from "react";
 import splitbee from "@splitbee/web";
 import { ThemeProvider } from "next-themes";
@@ -12,14 +11,10 @@ splitbee.init({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const [queryClient] = React.useState(() => new QueryClient());
-
     return (
-        <QueryClientProvider client={queryClient}>
-            <ThemeProvider attribute="class">
-                <Component {...pageProps} />
-            </ThemeProvider>
-        </QueryClientProvider>
+        <ThemeProvider attribute="class">
+            <Component {...pageProps} />
+        </ThemeProvider>
     );
 }
 

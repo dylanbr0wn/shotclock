@@ -26,8 +26,6 @@
     "react-hook-form": "^7.32.2",
     "react-hot-toast": "^2.2.0",
     "react-notion": "^0.10.0",
-    "react-query": "^3.39.1",
-    "react-router-dom": "6",
     "sass": "^1.52.2",
     "superjson": "^1.9.1",
     "use-sound": "^4.0.1",

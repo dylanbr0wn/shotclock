@@ -1,4 +1,3 @@
-import { useQuery } from "react-query";
 import { NotionRenderer } from "react-notion";
 import "react-notion/src/styles.css";
 import AppWrapper from "../../components/AppWrapper";
