@@ -5,27 +5,29 @@ import { GetStaticPropsContext } from "next";
 // pages/api/index.ts
 import { fetchPageById, parsePageBlocks } from "../../utils/api/notion";
 import { parsePageId } from "../../utils/api/utils";
+import * as React from "react";
 
 export const getStaticProps = async () => {
-    const pageId = parsePageId("shotclock-9ebbc7b285f84acf80c2a961e989ec31");
-    const page = await fetchPageById(pageId!, undefined);
+	const res = await fetch(
+		"https://notion.dylanbrown.space/page/shotclock-9ebbc7b285f84acf80c2a961e989ec31"
+	);
 
-    const allBlocks = await parsePageBlocks(page, pageId);
+	const data = await res.json();
 
-    return {
-        props: {
-            blockMap: allBlocks,
-        },
-    };
+	return {
+		props: {
+			blockMap: data,
+		},
+	};
 };
 
 const About = ({ blockMap }) => {
-    return (
-        <AppWrapper>
-            <div className="max-w-3xl mx-auto pt-10 text-stone-900 dark:text-amber-100 px-2 md:px-0">
-                <NotionRenderer blockMap={blockMap} />
-            </div>
-        </AppWrapper>
-    );
+	return (
+		<AppWrapper>
+			<div className="max-w-3xl mx-auto pt-10 text-stone-900 dark:text-amber-100 px-2 md:px-0">
+				<NotionRenderer blockMap={blockMap} />
+			</div>
+		</AppWrapper>
+	);
 };
 export default About;
