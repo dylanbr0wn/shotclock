@@ -3,11 +3,12 @@ import useLocalStorage from "./useLocalStorage";
 
 import { useMemo } from "react";
 import { Brew, Brews } from "../types";
+import * as React from "react";
 
 const useBrews = () => {
 	const [brews, setBrews] = useLocalStorage<Brews>("tasteForms", []);
 
-	const sortForms = () => {
+	const sortForms = React.useCallback(() => {
 		let sortedForms = brews.sort(function (a, b) {
 			const nameA = a.name.toUpperCase(); // ignore upper and lowercase
 			const nameB = b.name.toUpperCase(); // ignore upper and lowercase
@@ -22,7 +23,7 @@ const useBrews = () => {
 			return 0;
 		});
 		return sortedForms;
-	};
+	}, [brews]);
 
 	const addBrew = (brew: Brew) => {
 		setBrews([
@@ -38,7 +39,7 @@ const useBrews = () => {
 		setBrews(brews.map((brew) => (brew.id === id ? { ...newBrew, id } : brew)));
 	};
 
-	const memoBrews = useMemo(() => sortForms(), [brews]);
+	const memoBrews = useMemo(() => sortForms(), [sortForms]);
 	return { brews: memoBrews, addBrew, removeBrew, updateBrew };
 };
 

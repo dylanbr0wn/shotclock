@@ -1,5 +1,6 @@
 import Table from "../components/Brews/Table";
 import AppWrapper from "./AppWrapper";
+import * as React from "react";
 
 const Dashboard = () => {
 	return (

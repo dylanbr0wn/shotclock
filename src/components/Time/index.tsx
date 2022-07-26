@@ -9,11 +9,10 @@ import SaveButton from "./SaveButton";
 
 const Time = () => {
 	const { start, stop, reset } = useStopWatch();
-	const { percent, running, setGoal, time } = useStore(
+	const { percent, running, time } = useStore(
 		(state) => ({
 			running: state.running,
 			percent: state.percent,
-			setGoal: state.setGoal,
 			time: state.time,
 		}),
 		shallow

@@ -7,7 +7,6 @@ import useSound from "use-sound";
 
 export const useStopWatch = () => {
 	const timer = React.useRef<NodeJS.Timer>();
-	const soundRef = React.useRef<Howl>();
 	const shouldPlay = React.useRef<boolean>();
 	const timeRef = React.useRef(useStore.getState().time);
 	const percentRef = React.useRef(useStore.getState().percent);

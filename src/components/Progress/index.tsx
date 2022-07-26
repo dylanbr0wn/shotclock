@@ -58,7 +58,7 @@ const Progress = () => {
 		api({
 			height,
 		});
-	}, [percent, sab, sat]);
+	}, [api, percent, sab, sat]);
 
 	return (
 		<>

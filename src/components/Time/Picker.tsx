@@ -24,7 +24,7 @@ const Picker = () => {
 			setZuGoal(storeGoal);
 			setGoalLoaded(true);
 		}
-	}, [storeGoal, goalLoaded]);
+	}, [storeGoal, goalLoaded, setZuGoal, setGoalLoaded]);
 
 	const getSeconds = React.useCallback(() => {
 		return Math.floor((goal % 60000) / 1000);
