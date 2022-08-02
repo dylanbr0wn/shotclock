@@ -173,9 +173,12 @@ const TasteForm = ({
 									<input
 										disabled
 										className="p-2 dark:text-amber-300 w-full rounded-lg border focus:ring-0 dark:bg-stone-900 bg-white border-stone-200 dark:border-stone-600 placeholder:text-stone-400 transition-colors ring-0 outline-none focus:outline focus:outline-amber-500 outline-offset-0 focus:border-amber-500 hover:border-amber-500"
-										value={`${("0" + Math.floor((time / 1000) % 60)).slice(
-											-2
-										)}:${("0" + (Math.floor(time / 10) % 100)).slice(-2)}`}
+										value={`${(
+											"0" + Math.floor((getValues("time") / 1000) % 60)
+										).slice(-2)}:${(
+											"0" +
+											(Math.floor(getValues("time") / 10) % 100)
+										).slice(-2)}`}
 									/>
 								</label>
 							</div>
