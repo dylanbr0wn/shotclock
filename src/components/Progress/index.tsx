@@ -21,11 +21,6 @@ const Progress = () => {
 	}));
 
 	React.useEffect(() => {
-		const sab = Number(
-			getComputedStyle(window.document.documentElement)
-				.getPropertyValue("--sab")
-				.slice(0, -2)
-		);
 		const sat = Number(
 			getComputedStyle(window.document.documentElement)
 				.getPropertyValue("--sat")
@@ -35,17 +30,6 @@ const Progress = () => {
 	}, []);
 
 	React.useEffect(() => {
-		// console.log();
-		// api({
-		//     height: `${
-		//         (percent / 100) * window.screen.height * 0.8 -
-		//         Number(sab.slice(0, -2))
-		//     }px`,
-		// });
-		// console.log(
-		//     ((0.8 * (window.screen.height - sab - 64)) / window.screen.height) *
-		//         100
-		// );
 		let height = "0vh";
 		if (sab > 0 && sat > 0) {
 			height = `${(percent / 100) * 70}vh`;
